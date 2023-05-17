@@ -24,6 +24,7 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
+    "@mobiscroll/react": "https://npm.mobiscroll.com/@mobiscroll/react-trial/-/react-trial-5.24.1.tgz",
     "mongodb": "^5.4.0"
   }
 }

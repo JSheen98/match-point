@@ -1,5 +1,7 @@
 const { Schema, model } = require('mongoose');
 
+// TODO: use bcrypt to check existing pws and hash new ones
+
 const userSchema = new Schema(
     {
         username: {

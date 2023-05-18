@@ -1,11 +1,11 @@
 const { User } = require('../models')
 const { AuthenticationError } = require('apollo-server-express')
-const { signToken } = require('../utils/auth') // TODO: Auth
+const { signToken } = require('../utils/auth')
 
 const resolvers = {
-    Query: {
+    // Query: {
 
-    },
+    // },
     Mutation: {
         // signup mutation
         addUser: async (parent, { username, email, password, phoneNumber }) => {

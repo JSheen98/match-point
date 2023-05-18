@@ -12,6 +12,10 @@ const teamSchema = new Schema(
             type: String,
             required: true
         },
+        description: {
+            type: String,
+            max: 280
+        },
         events: [{
             type: Schema.Types.ObjectId,
             ref: 'Events',

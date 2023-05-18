@@ -9,6 +9,7 @@ import { setContext } from '@apollo/client/link/context'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 // import Home from './pages/Home' 
 import Calendar from "./pages/Calendar";
+import Navbar from "./components/Navbar/Navbar";
 
 const httpLink = createHttpLink({
   uri: '/graphql'
@@ -48,7 +49,6 @@ function App() {
         </Router>
       </div>
     </ApolloProvider>
-
   );
 }
 

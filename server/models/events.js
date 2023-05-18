@@ -19,14 +19,14 @@ const eventSchema = new Schema(
             required: true,
             unique: false
         },
-        team1: {
+        team1: [{
             type: Schema.Types.ObjectId,
             ref: 'Team'
-        },
-        team2: {
+        }],
+        team2: [{
             type: Schema.Types.ObjectId,
             ref: 'Team'
-        }
+        }]
     }
 );
 

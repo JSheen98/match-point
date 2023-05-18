@@ -8,11 +8,12 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Calendar from "./pages/Calendar";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (
     <div className="App">
-      <h1>Test</h1>
+      <Navbar />
       <Router>
         <Routes>
           <Route path="/" element={<Calendar />} />

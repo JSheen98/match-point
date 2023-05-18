@@ -1,19 +1,22 @@
-const express = require('express');
+const express = require('express')
 const { ApolloServer } = require('apollo-server-express')
-const path = require('path');
-
-// TODO: Add auth stuff?
+const path = require('path')
+const { authMiddleware } = require('./utils/auth')
 
 const { typeDefs, resolvers } = require('./schemas')
 const db = require('./config/connection');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+// new apollo server using our custom queries and mutations, plus context
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
+  // allows user session
+  context: authMiddleware
 })
 
+// middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

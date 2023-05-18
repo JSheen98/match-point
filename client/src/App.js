@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import {
   ApolloClient,
   InMemoryCache,
@@ -8,6 +8,7 @@ import {
 import { setContext } from '@apollo/client/link/context'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 // import Home from './pages/Home' 
+import Calendar from "./pages/Calendar";
 
 const httpLink = createHttpLink({
   uri: '/graphql'
@@ -35,18 +36,16 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
+      <div className="App">
+      <h1>Test</h1>
       <Router>
         <Routes>
-          {/* <Route // route for home component
-          path='/'
-          element={<Home />}
-          /> */}
-          <div className="App">
-            <h1>Test</h1>
-          </div>
+          <Route path="/" element={<Calendar />} />
         </Routes>
       </Router>
+    </div>
     </ApolloProvider>
+
   );
 }
 

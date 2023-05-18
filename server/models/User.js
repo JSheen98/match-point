@@ -22,7 +22,7 @@ const userSchema = new Schema(
             minlength: 5
         },
         phoneNumber: {
-            type: String
+            type: Number
         },
         team: [{
             type: Schema.Types.ObjectId,

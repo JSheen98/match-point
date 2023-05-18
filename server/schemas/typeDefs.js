@@ -16,6 +16,8 @@ type: Auth {
 
 type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!, phoneNumber: String)
+    addUser(username: String!, email: String!, password: String!, phoneNumber: String): Auth
 }
 `
+
+module.exports = typeDefs

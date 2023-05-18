@@ -14,6 +14,9 @@ const eventSchema = new Schema(
             unique: false,
             trim: true
         },
+        location :{
+
+        },
         time: {
             type: String,
             required: true,
@@ -26,6 +29,19 @@ const eventSchema = new Schema(
         team2: {
             type: Schema.Types.ObjectId,
             ref: 'Team'
+        },
+// Save poster's information to event as contact info
+        username: {
+            type: String,
+            allowNull: false,
+        },
+        email: {
+            type: String,
+            allowNull: false,
+        },
+        phone: {
+            type: String,
+            allowNull: true,
         }
     }
 );

@@ -5,13 +5,14 @@ import { ADD_EVENT } from '../utils/mutations';
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
 
-
-// comment out this const and the "minDate" line of the picker if there are issues
+// minDate is supposed to set a minimum date the user cannot go past when choosing the Event date.
+// comment out this const and the "minDate" line of the picker if there are issues.
+// will need to set a filter of some kind to prevent older events from rendering on homepage otherwise.
 const minDate = new Date(date('Min date', new Date(currentDate)));
 
 
 const EventForm = () => {
-    const [formInput, setFormInput] = useState({ name: '', date: '', time: '', team1: '', team2: '', username: '', email: '', phone:''})
+    const [formInput, setFormInput] = useState({name: '', sport: '', location: '', date: '', time: ''})
     const [create, { error }] = useMutation(ADD_EVENT)
 
     const handleChange = (e) => {
@@ -22,25 +23,22 @@ const EventForm = () => {
     const handleFormSubmit = async (e) => {
         e.preventDefault()
 
-        // try {
-        //     const { data } = await create({
-        //         variables: { ...formInput }
-        //     })
+        try {
+            const { data } = await create({
+                variables: { ...formInput }
+            })
 
-        //     Auth.login(data.signup.token)
-        // } catch (err) {
-        //     console.error(err)
-        // }
+            // Auth.login(data.create.token)
+        } catch (err) {
+            console.error(err)
+        }
 
         setFormInput({
             name: '',
+            sport: '',
+            location: '',
             date: '',
-            time: '',
-            team1: '',
-            team2: '',
-            username: '',
-            email: '',
-            phone:''
+            time: ''
         })
     }
 
@@ -52,10 +50,32 @@ const EventForm = () => {
                 onChange={handleChange}
                 type='text'
                 name='eventname'
-                placeholder='e.g. Basketball'
+                placeholder='e.g. Basketball @ Rec'
                 label="Event Name"
             />
         </Form.Field>
+
+        <Form.Field>
+            <Form.Input
+                value={formInput.sport}
+                onChange={handleChange}
+                type='text'
+                name='sport'
+                placeholder='e.g. Backetball'
+                label="sport"
+            />
+        </Form.Field>
+
+        <Form.Field>
+            <Form.Input
+                value={formInput.location}
+                onChange={handleChange}
+                type='text'
+                name='location'
+                placeholder='e.g. 123 Address Rd'
+                label="location"
+            />
+        </Form.Field>  
 {/* For date, might need dropdown calendar. */}
 {/* TOOL: https://www.npmjs.com/package/react-semantic-ui-datepickers */}
         
@@ -64,7 +84,7 @@ const EventForm = () => {
                 error={error}
                 label="Initial date"
                 id="initialDate"
-                onChange={onChange}
+                onChange={handleChange}
                 required
                 minDate={minDate}
                 />
@@ -74,9 +94,13 @@ const EventForm = () => {
             <Form.Input
                 value={formInput.time}
                 onChange={handleChange}
-
+                type='text'
+                name='time'
+                placeholder='e.g. 1:00 pm'
+                label="time"
             />
         </Form.Field>
+      
 
     {/* //in case we need to include the code that snapshots the user's contact info*/}
         {/* <Form.Field>

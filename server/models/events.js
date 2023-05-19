@@ -8,6 +8,18 @@ const eventSchema = new Schema(
             required: true,
             trim: true
         },
+        sport: {
+            type: String,
+            unique: false,
+            required: true,
+            trim: true
+        },
+        location :{
+            type: String,
+            required: true,
+            unique: false,
+            trim: true  
+        },
         date: {
             type: String,
             required: true,
@@ -18,18 +30,6 @@ const eventSchema = new Schema(
             type: String,
             required: true,
             unique: false
-        },
-        location :{
-            type: String,
-            required: true,
-            unique: false,
-            trim: true  
-        },
-        sport: {
-            type: String,
-            unique: false,
-            required: true,
-            trim: true
         }
         // team1: {
         //     type: Schema.Types.ObjectId,

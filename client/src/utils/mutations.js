@@ -25,8 +25,8 @@ export const ADD_USER = gql`
 `
 
 export const ADD_EVENT = gql`
-    mutation addEvent($name: String!, $date: String!, $time: String!, $sport: String! $team1: String!, $team2: String!, $username: String!, $email: String!, $phone: String!) {
-        addEvent(name: $name, date: $date, time: $time, sport: $sport, team1: $team1, team2: $team2, username: $username, email: $email, phone: $phone) {
+    mutation addEvent($name: String!, $sport: String!, $location: String!, $date: String!, $time: String!) {
+        addEvent(name: $name, sport: $sport, location: $location, date: $date, time: $time) {
             
         }
     }

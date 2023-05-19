@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Button, Menu, Segment } from 'semantic-ui-react'
+
+import React { useState } from 'react';
+import { Menu, Segment } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth'
+
 
 
 export default function NavbarLg() {
@@ -14,29 +16,40 @@ export default function NavbarLg() {
           {/* TODO: add functional links to components */}
 
           <Menu.Item
+            as={Link}
+            to="/"
             name='Match Point'
             active={activeItem === 'Match Point'}
             onClick={handleItemClick}
           />
           <Menu.Item
-            name='Calendar'
-            active={activeItem === 'Calendar'}
-            onClick={handleItemClick}
-          />
+          as={Link}
+          to="/profile"
+          name='profile'
+          active={activeItem === 'profile'}
+          onClick={handleItemClick}
+        />
           <Menu.Item
-            name='My Profile'
-            active={activeItem === 'My Profile'}
+            as={Link}
+            to= "/calendar"
+            name='calendar'
+            active={activeItem === 'calendar'}
             onClick={handleItemClick}
+            position="right"
           />
+          {/* Add link to login */}
           <Menu.Item
             name='login'
             active={activeItem === 'login'}
             onClick={handleItemClick}
             position="right"
           />
+          {/* Add link to sign up */}
           <Menu.Item
-            name='sign_in'
-            active={activeItem === 'sign_in'}
+            as={Link}
+            to="/signup"
+            name='sign_up'
+            active={activeItem === 'sign_up'}
             onClick={handleItemClick}
           />
         </Menu>

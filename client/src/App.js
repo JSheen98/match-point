@@ -40,10 +40,10 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Navbar />
       {/* <Sidebar /> */}
       <div className="App">
         <Router>
+        <Navbar />
           <Routes>
             {/* <Route path="/" element={<Home />} /> */}
             <Route path="/calendar" element={<Calendar />} />

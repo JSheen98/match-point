@@ -1,6 +1,6 @@
-const { User } = require('../models/User')
-const { Team } = require('../models/Team');
-const { Events } = require('../models/Events');
+const { User } = require('../models')
+const { Team } = require('../models');
+const { Events } = require('../models');
 const { AuthenticationError } = require('apollo-server-express')
 const { signToken } = require('../utils/auth')
 

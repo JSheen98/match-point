@@ -61,7 +61,6 @@ function NavbarMb({renderLinks}) {
         width='thin'
       >
         {/* TODO: Add links to hamburger menu as needed */}
-
         <Menu.Item
           as={Link}
           to="/"
@@ -69,18 +68,27 @@ function NavbarMb({renderLinks}) {
           active={activeItem === 'home'}
           onClick={handleItemClick}
         />
-
-        {/* TODO: Add functionality/link to signin/signup forms */}
-
         <Menu.Item
+          as={Link}
+          to="/profile"
+          name='profile'
+          active={activeItem === 'profile'}
+          onClick={handleItemClick}
+        />
+        <Menu.Item
+          as={Link}
+          to=""
           name='login'
           active={activeItem === 'login'}
           onClick={handleItemClick}
           position="right"
         />
+        {/* Add link to sign up */}
         <Menu.Item
-          name='sign_in'
-          active={activeItem === 'sign_in'}
+          as={Link}
+          to=""
+          name='sign_up'
+          active={activeItem === 'sign_up'}
           onClick={handleItemClick}
         />
       </Sidebar>

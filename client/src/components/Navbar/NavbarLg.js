@@ -27,15 +27,19 @@ export default function NavbarLg() {
             onClick={handleItemClick}
             position="right"
           />
+          {/* Add link to login */}
           <Menu.Item
+            as={Link}
+            to=""  
             name='login'
             active={activeItem === 'login'}
             onClick={handleItemClick}
             position="right"
           />
+          {/* Add link to sign up */}
           <Menu.Item
-            name='sign_in'
-            active={activeItem === 'sign_in'}
+            name='sign_up'
+            active={activeItem === 'sign_up'}
             onClick={handleItemClick}
           />
         </Menu>

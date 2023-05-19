@@ -30,6 +30,7 @@ const eventSchema = new Schema(
             type: String,
             required: true,
             unique: false
+
         }
         // team1: {
         //     type: Schema.Types.ObjectId,

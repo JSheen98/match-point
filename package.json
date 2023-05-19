@@ -26,10 +26,7 @@
   "dependencies": {
     "@apollo/server": "^4.7.1",
     "@mobiscroll/react": "https://npm.mobiscroll.com/@mobiscroll/react-trial/-/react-trial-5.24.1.tgz",
-<<<<<<< HEAD
     "graphql": "^16.6.0",
-    "mongodb": "^5.4.0"
-=======
     "mongodb": "^5.4.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -45,6 +42,5 @@
       "react-app",
       "react-app/jest"
     ]
->>>>>>> f9e628c3de65255c7eeb7e540af0c5850a7c1c78
   }
 }

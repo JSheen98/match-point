@@ -23,6 +23,10 @@ const userSchema = new Schema(
         phoneNumber: {
             type: Number
         },
+        events: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Events',
+        }],
         team: [{
             type: Schema.Types.ObjectId,
             ref: 'Team',

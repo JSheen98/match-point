@@ -1,5 +1,7 @@
-import { useState } from 'react'
-import { Menu, Segment } from 'semantic-ui-react'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Button, Menu, Segment } from 'semantic-ui-react'
+import Auth from '../../utils/auth'
 
 
 export default function NavbarLg() {
@@ -13,12 +15,17 @@ export default function NavbarLg() {
 
           <Menu.Item
             name='Match Point'
-            active={activeItem === 'home'}
+            active={activeItem === 'Match Point'}
             onClick={handleItemClick}
           />
           <Menu.Item
             name='Calendar'
             active={activeItem === 'Calendar'}
+            onClick={handleItemClick}
+          />
+          <Menu.Item
+            name='My Profile'
+            active={activeItem === 'My Profile'}
             onClick={handleItemClick}
           />
           <Menu.Item

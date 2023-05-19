@@ -7,6 +7,12 @@ import Auth from '../utils/auth'
 // TODO: set up validation, maybe disable submit button until input is filled?
 // make username, email, password required, phone number shouldn't be
 
+const styles = {
+    container: {
+        margin: '25px'
+    }
+}
+
 const SignupForm = () => {
     const [formInput, setFormInput] = useState({ username: '', email: '', password: '', phoneNumber: ''})
     const [signup, { error }] = useMutation(ADD_USER)
@@ -38,6 +44,7 @@ const SignupForm = () => {
     }
 
     return (
+        <div style={styles.container}>
         <Form onSubmit={handleFormSubmit}>
             <Form.Field>
                 <Form.Input
@@ -65,7 +72,6 @@ const SignupForm = () => {
                     onChange={handleChange}
                     type='password'
                     name='password'
-                    placeholder='Password'
                     label="Password"
                 />
             </Form.Field>
@@ -81,6 +87,7 @@ const SignupForm = () => {
             </Form.Field>
             <Button type='submit'>Submit</Button>
         </Form>
+        </div>
     )
 }
 

@@ -10,6 +10,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 // import Home from './pages/Home' 
 import Calendar from "./pages/Calendar";
 import Navbar from "./components/Navbar/Navbar";
+import Profile from './pages/Profile'
+import LoginForm from './components/LoginForm'
+import SignupForm from './components/SignupForm'
 
 const httpLink = createHttpLink({
   uri: '/graphql'
@@ -37,14 +40,16 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      {/* <Header /> */}\
+      <Navbar />
       {/* <Sidebar /> */}
       <div className="App">
-        <h1>Test</h1>
         <Router>
           <Routes>
             {/* <Route path="/" element={<Home />} /> */}
             <Route path="/calendar" element={<Calendar />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/signup" element={<SignupForm />} />
           </Routes>
         </Router>
       </div>

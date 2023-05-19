@@ -1,5 +1,6 @@
-import { useState } from 'react'
-import { Menu, Segment } from 'semantic-ui-react'
+import { useState } from 'react';
+import { Menu, Segment } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 
 export default function NavbarLg() {
@@ -12,14 +13,19 @@ export default function NavbarLg() {
           {/* TODO: add functional links to components */}
 
           <Menu.Item
+            as={Link}
+            to="/"
             name='Match Point'
             active={activeItem === 'home'}
             onClick={handleItemClick}
           />
           <Menu.Item
-            name='Calendar'
-            active={activeItem === 'Calendar'}
+            as={Link}
+            to= "/calendar"
+            name='calendar'
+            active={activeItem === 'calendar'}
             onClick={handleItemClick}
+            position="right"
           />
           <Menu.Item
             name='login'

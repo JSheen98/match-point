@@ -37,11 +37,11 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      {/* <Header /> */}\
+      {/* <Header /> */}
       {/* <Sidebar /> */}
       <div className="App">
-        <h1>Test</h1>
         <Router>
+        <Navbar />
           <Routes>
             {/* <Route path="/" element={<Home />} /> */}
             <Route path="/calendar" element={<Calendar />} />

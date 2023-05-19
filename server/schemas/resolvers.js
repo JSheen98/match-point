@@ -1,11 +1,43 @@
-const { User } = require('../models')
+const { User } = require('../models/User')
+const { Team } = require('../models/Team');
+const { Events } = require('../models/Events');
 const { AuthenticationError } = require('apollo-server-express')
 const { signToken } = require('../utils/auth')
 
 const resolvers = {
-    // Query: {
+    Query: {
+        users: async () => {
+            return User.find({});
+        },
+        user: async (parent, { _id }) => {
+            const params = _id ? { _id } : {};
+            if (!params) {
+                return { message: 'No user found || check id' }
+            }
+            return User.find(params)
+        },
+        teams: async () => {
+            return Team.find({})
+        },
+        team: async (parent, { _id }) => {
+            const params = _id ? { _id } : {};
+            if (!params) {
+                return { message: 'No team found || check id' }
+            }
+            return Team.find(params)
+        },
+        events: async () => {
+            return Events.find({})
+        },
+        event: async (parent, { _id }) => {
+            const params = _id ? { _id } : {};
+            if (!params) {
+                return { message: 'No event found || check id' }
+            }
+            return Events.find(params)
+        }
 
-    // },
+    },
     Mutation: {
         // signup mutation
         addUser: async (parent, { username, email, password, phoneNumber }) => {
@@ -39,6 +71,14 @@ const resolvers = {
 
             // return token and user
             return { token, user }
+        },
+        addTeam: async (parent, args) => {
+            const newTeam = await Team.create(args);
+            return newTeam;
+        },
+        addEvent: async (parent, args) => {
+            const newEvent = await Events.create(args);
+            return newEvent;
         }
     }
 }

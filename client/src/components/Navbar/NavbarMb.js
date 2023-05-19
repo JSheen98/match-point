@@ -77,7 +77,15 @@ function NavbarMb({renderLinks}) {
         />
         <Menu.Item
           as={Link}
-          to=""
+          to= "/calendar"
+          name='calendar'
+          active={activeItem === 'calendar'}
+          onClick={handleItemClick}
+          position="right"
+        />
+        <Menu.Item
+          as={Link}
+          to="/login"
           name='login'
           active={activeItem === 'login'}
           onClick={handleItemClick}
@@ -86,7 +94,7 @@ function NavbarMb({renderLinks}) {
         {/* Add link to sign up */}
         <Menu.Item
           as={Link}
-          to=""
+          to="/signup"
           name='sign_up'
           active={activeItem === 'sign_up'}
           onClick={handleItemClick}

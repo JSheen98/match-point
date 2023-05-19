@@ -20,6 +20,13 @@ export default function NavbarLg() {
             onClick={handleItemClick}
           />
           <Menu.Item
+          as={Link}
+          to="/profile"
+          name='profile'
+          active={activeItem === 'profile'}
+          onClick={handleItemClick}
+        />
+          <Menu.Item
             as={Link}
             to= "/calendar"
             name='calendar'
@@ -30,7 +37,7 @@ export default function NavbarLg() {
           {/* Add link to login */}
           <Menu.Item
             as={Link}
-            to=""  
+            to="/login"  
             name='login'
             active={activeItem === 'login'}
             onClick={handleItemClick}
@@ -38,6 +45,8 @@ export default function NavbarLg() {
           />
           {/* Add link to sign up */}
           <Menu.Item
+            as={Link}
+            to="/signup"
             name='sign_up'
             active={activeItem === 'sign_up'}
             onClick={handleItemClick}

@@ -13,7 +13,7 @@ export const LOGIN = gql`
 `
 
 export const ADD_USER = gql`
-    mutation addUser($username: String!, $email: String!, $password: String!, phoneNumber: Number!) {
+    mutation addUser($username: String!, $email: String!, $password: String!, $phoneNumber: Number!) {
         addUser(username: $username, email: $email, password: $password, phoneNumber: $phoneNumber) {
             token
             user {
@@ -24,18 +24,19 @@ export const ADD_USER = gql`
     }
 `
 
-export const ADD_TEAM = gql`
-mutation addTeam($name: String!, $sport: String!, $events: ID!) {
-    addTeam(name: $name, sport: $sport, events: $events) 
-    }
-}
+// export const ADD_TEAM = gql`
+// mutation addTeam($name: String!, $sport: String!, $events: ID!) {
+//     addTeam(name: $name, sport: $sport, events: $events) 
+//     }
+// }
 
-`;
+
+// `
 
 export const ADD_EVENT = gql`
-mutation addEvent($name: String!, $date: String!, $time: String!, $team1: ID!, $team2: ID! ){
-    addEvent(name: $name, date: $date, time: $time, team1: $team1, team2: $team2)
+    mutation addEvent($name: String!, $sport: String!, $location: String!, $date: String!, $time: String!) {
+        addEvent(name: $name, sport: $sport, location: $location, date: $date, time: $time) {
+            
+        }
     }
-}
-
-`;
+`

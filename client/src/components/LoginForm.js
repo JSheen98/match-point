@@ -6,6 +6,12 @@ import Auth from '../utils/auth'
 
 // TODO: set up validation, maybe disable submit button until input is filled?
 
+const styles = {
+    container: {
+        margin: '25px'
+    }
+}
+
 const LoginForm = () => {
     const [formInput, setFormInput] = useState({ email: '', password: '' })
     const [login, { error }] = useMutation(LOGIN)
@@ -35,29 +41,31 @@ const LoginForm = () => {
     }
 
     return (
-        <Form onSubmit={handleFormSubmit}>
-            <Form.Field>
-                <Form.Input
-                    value={formInput.email}
-                    onChange={handleChange}
-                    type='email'
-                    name='email'
-                    placeholder='example@email.com'
-                    label="Email"
-                />
-            </Form.Field>
-            <Form.Field>
-                <Form.Input
-                    value={formInput.password}
-                    onChange={handleChange}
-                    type='password'
-                    name='password'
-                    placeholder='Password'
-                    label="Password"
-                />
-            </Form.Field>
-            <Button type='submit'>Submit</Button>
-        </Form>
+        <div style={styles.container}>
+            <Form onSubmit={handleFormSubmit}>
+                <Form.Field>
+                    <Form.Input
+                        value={formInput.email}
+                        onChange={handleChange}
+                        type='email'
+                        name='email'
+                        placeholder='example@email.com'
+                        label="Email"
+                    />
+                </Form.Field>
+                <Form.Field>
+                    <Form.Input
+                        value={formInput.password}
+                        onChange={handleChange}
+                        type='password'
+                        name='password'
+                        label="Password" 
+                    
+                    />
+                </Form.Field>
+                <Button type='submit'>Submit</Button>
+            </Form>
+        </div>
     )
 }
 

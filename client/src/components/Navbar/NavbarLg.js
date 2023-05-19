@@ -1,6 +1,9 @@
-import { useState } from 'react';
+
+import React { useState } from 'react';
 import { Menu, Segment } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import Auth from '../../utils/auth'
+
 
 
 export default function NavbarLg() {
@@ -16,7 +19,7 @@ export default function NavbarLg() {
             as={Link}
             to="/"
             name='Match Point'
-            active={activeItem === 'home'}
+            active={activeItem === 'Match Point'}
             onClick={handleItemClick}
           />
           <Menu.Item
@@ -36,8 +39,6 @@ export default function NavbarLg() {
           />
           {/* Add link to login */}
           <Menu.Item
-            as={Link}
-            to="/login"  
             name='login'
             active={activeItem === 'login'}
             onClick={handleItemClick}

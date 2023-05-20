@@ -15,7 +15,7 @@ const styles = {
 
 const SignupForm = () => {
     const [formInput, setFormInput] = useState({ username: '', email: '', password: '', phoneNumber: ''})
-    const [signup, { error }] = useMutation(ADD_USER)
+    const [addUser, { error, data }] = useMutation(ADD_USER)
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -26,11 +26,14 @@ const SignupForm = () => {
         e.preventDefault()
 
         try {
-            const { data } = await signup({
+            console.log("1: ", formInput)
+            const { data } = await addUser({
                 variables: { ...formInput }
             })
 
-            Auth.login(data.signup.token)
+            console.log("2: ", formInput)
+            console.log("3: ", data)
+            Auth.login(data.addUser.token)
         } catch (err) {
             console.error(err)
         }

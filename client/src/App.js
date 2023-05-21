@@ -7,7 +7,7 @@ import {
 } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-// import Home from './pages/Home' 
+import Home from './pages/Home' 
 import Calendar from "./pages/Calendar";
 import Events from './pages/Events'
 import Basketball from './pages/sports/basketball';
@@ -51,7 +51,7 @@ function App() {
         <Router>
         <Navbar />
           <Routes>
-            {/* <Route path="/" element={<Home />} /> */}
+            <Route path="/" element={<Home />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/events" element={<Events />} />
             <Route path="/basketball" element={<Basketball />} />
@@ -66,6 +66,7 @@ function App() {
           </Routes>
         </Router>
       </div>
+    
     </ApolloProvider>
   );
 }

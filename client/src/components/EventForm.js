@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Button, Form } from 'semantic-ui-react';
 import { useMutation } from '@apollo/client';
 import { ADD_EVENT } from '../utils/mutations';
-import SemanticDatepicker from 'react-semantic-ui-datepickers';
-import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
+import DatePicker from 'react-date-picker';
+// import SemanticDatepicker from 'react-semantic-ui-datepickers';
+// import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
 
 // minDate is supposed to set a minimum date the user cannot go past when choosing the Event date.
 // comment out this const and the "minDate" line of the picker if there are issues.
@@ -11,9 +12,13 @@ import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
 // const minDate = new Date(date('Min date', new Date(currentDate)));
 
 
+
 const EventForm = () => {
     const [formInput, setFormInput] = useState({name: '', sport: '', location: '', date: '', time: ''})
     const [create, { error }] = useMutation(ADD_EVENT)
+
+    const [value, onChange] = useState(new Date());
+    console.log(value)
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -49,7 +54,7 @@ const EventForm = () => {
                 value={formInput.name}
                 onChange={handleChange}
                 type='text'
-                name='eventname'
+                name='name'
                 placeholder='e.g. Basketball @ Rec'
                 label="Event Name"
             />
@@ -80,13 +85,9 @@ const EventForm = () => {
 {/* TOOL: https://www.npmjs.com/package/react-semantic-ui-datepickers */}
         
         <Form.Group width="equals">
-            <SemanticDatepicker
-                error={error}
-                label="Initial date"
-                id="initialDate"
-                onChange={handleChange}
-                required
-                // minDate={minDate}
+            <DatePicker
+                onChange={onChange}
+
                 />
         </Form.Group>
         

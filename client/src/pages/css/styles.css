@@ -1,0 +1,37 @@
+
+/* CSS for Events Page */
+.event {
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    background-color: gray;
+    margin: 50px;
+}
+
+.SportLabel{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.events{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 5px;
+}
+
+
+/* CSS for Sport specific pages */
+.center {
+    display: flex;
+justify-content: center;
+align-items: center;
+align-content: space-between;
+}
+
+.end{
+   display: flex;
+   justify-self: center;
+}

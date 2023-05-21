@@ -9,6 +9,12 @@ import { setContext } from '@apollo/client/link/context'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 // import Home from './pages/Home' 
 import Calendar from "./pages/Calendar";
+import Events from './pages/Events'
+import Basketball from './pages/sports/basketball';
+import Soccer from './pages/sports/soccer';
+import Baseball from './pages/sports/baseball';
+import Football from './pages/sports/football';
+import Other from './pages/sports/other';
 import Navbar from "./components/Navbar/Navbar";
 import Profile from './pages/Profile'
 import LoginForm from './components/LoginForm'
@@ -47,9 +53,16 @@ function App() {
           <Routes>
             {/* <Route path="/" element={<Home />} /> */}
             <Route path="/calendar" element={<Calendar />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/basketball" element={<Basketball />} />
+            <Route path="/soccer" element={<Soccer />} />
+            <Route path="/baseball" element={<Baseball />} />
+            <Route path="/football" element={<Football />} />
+            <Route path="/others" element={<Other />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/signup" element={<SignupForm />} />
+
           </Routes>
         </Router>
       </div>

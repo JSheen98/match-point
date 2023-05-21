@@ -8,7 +8,7 @@ import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
 // minDate is supposed to set a minimum date the user cannot go past when choosing the Event date.
 // comment out this const and the "minDate" line of the picker if there are issues.
 // will need to set a filter of some kind to prevent older events from rendering on homepage otherwise.
-const minDate = new Date(date('Min date', new Date(currentDate)));
+// const minDate = new Date(date('Min date', new Date(currentDate)));
 
 
 const EventForm = () => {
@@ -86,7 +86,7 @@ const EventForm = () => {
                 id="initialDate"
                 onChange={handleChange}
                 required
-                minDate={minDate}
+                // minDate={minDate}
                 />
         </Form.Group>
         

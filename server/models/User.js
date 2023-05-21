@@ -23,6 +23,10 @@ const userSchema = new Schema(
         phoneNumber: {
             type: Number
         },
+        events: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Events',
+        }],
         team: [{
             type: Schema.Types.ObjectId,
             ref: 'Team',
@@ -46,4 +50,4 @@ userSchema.methods.isCorrectPassword = async function(password) {
 
 const User = model('User', userSchema);
 
-model.exports = User;
+module.exports = User;

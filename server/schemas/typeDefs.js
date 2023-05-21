@@ -25,7 +25,7 @@ type Events {
     team2: [Team]
 }
 
-type: Auth {
+type Auth {
     token: ID!
     user: User
 }

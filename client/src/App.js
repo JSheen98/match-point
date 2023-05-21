@@ -16,6 +16,9 @@ import Baseball from './pages/sports/baseball';
 import Football from './pages/sports/football';
 import Other from './pages/sports/other';
 import Navbar from "./components/Navbar/Navbar";
+import Profile from './pages/Profile'
+import LoginForm from './components/LoginForm'
+import SignupForm from './components/SignupForm'
 
 const httpLink = createHttpLink({
   uri: '/graphql'
@@ -43,11 +46,10 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      {/* <Header /> */}\
       {/* <Sidebar /> */}
       <div className="App">
-        <h1>Test</h1>
         <Router>
+        <Navbar />
           <Routes>
             {/* <Route path="/" element={<Home />} /> */}
             <Route path="/calendar" element={<Calendar />} />
@@ -57,6 +59,10 @@ function App() {
             <Route path="/baseball" element={<Baseball />} />
             <Route path="/football" element={<Football />} />
             <Route path="/others" element={<Other />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/signup" element={<SignupForm />} />
+
           </Routes>
         </Router>
       </div>

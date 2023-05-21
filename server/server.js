@@ -4,10 +4,10 @@ const path = require('path')
 const { authMiddleware } = require('./utils/auth')
 
 const { typeDefs, resolvers } = require('./schemas')
-const db = require('./config/connection');
+const db = require('./config/connection')
 
-const app = express();
-const PORT = process.env.PORT || 3001;
+const app = express()
+const PORT = process.env.PORT || 3001
 // new apollo server using our custom queries and mutations, plus context
 const server = new ApolloServer({
   typeDefs,
@@ -35,8 +35,8 @@ const startApolloServer = async () => {
 
   db.once('open', () => {
     app.listen(PORT, () => {
-      console.log(`API server running on port ${PORT}!`);
-      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+      console.log(`API server running on port ${PORT}!`)
+      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`)
     });
   });
 }

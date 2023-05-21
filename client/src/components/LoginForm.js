@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client'
 import { LOGIN } from '../utils/mutations'
 import Auth from '../utils/auth'
 
-// TODO: set up validation, maybe disable submit button until input is filled?
+// TODO: set up validation, error messaging?
 
 const styles = {
     container: {
@@ -63,7 +63,7 @@ const LoginForm = () => {
                     
                     />
                 </Form.Field>
-                <Button type='submit'>Submit</Button>
+                <Button disabled={!(formInput.email && formInput.password)} type='submit'>Submit</Button>
             </Form>
         </div>
     )

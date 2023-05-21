@@ -47,18 +47,21 @@ const ProfileContainer = () => {
                 <h2 className='ui centered blue header'>Your Events</h2>
                 <Grid style={styles.eventCard}>
                     <GridRow className='centered'>
-                        <Card style={styles.eventCard}>
-                            <Card.Content>
-                                <Card.Header className='ui centered'>Soccer Game</Card.Header>
-                                <p><strong>Description:</strong> We will meet Friday, the 5th at the rec center @ around 4pm. If you have any questions, call me at 1(800)-555-5555</p>
-                                <Grid className='ui centered'>
-                                    <GridRow >
-                                        <Button className='ui red'>Delete</Button>
-                                        <Button className='ui yellow'>Update</Button>
-                                    </GridRow>
-                                </Grid>
-                            </Card.Content>
-                        </Card>
+                        {userData.events.map((event) => {
+                            <Card style={styles.eventCard}>
+                                <Card.Content>
+                                    <Card.Header className='ui centered'>{event.name}</Card.Header>
+                                    <p><strong>Description:</strong> {event.description}</p>
+                                    <p><strong>Sport:</strong> {event.sport}</p>
+                                    <Grid className='ui centered'>
+                                        <GridRow >
+                                            <Button className='ui red'>Delete</Button>
+                                            <Button className='ui yellow'>Update</Button>
+                                        </GridRow>
+                                    </Grid>
+                                </Card.Content>
+                            </Card>
+                        })}
                     </GridRow>
                 </Grid>
             </div>
@@ -66,19 +69,21 @@ const ProfileContainer = () => {
                 <h2 className='ui centered blue header'>Your Teams</h2>
                 <Grid style={styles.eventCard}>
                     <GridRow className='centered'>
-                        <Card style={styles.eventCard}>
-                            <Card.Content>
-                                <Card.Header className='ui centered'>{userData.team}</Card.Header>
-                                <p><strong>Sport:</strong> {userData.team}</p>
-                                <p><strong>Description:</strong> {userData.team}</p>
-                                <Grid className='ui centered'>
-                                    <GridRow >
-                                        <Button className='ui red'>Delete</Button>
-                                        <Button className='ui yellow'>Update</Button>
-                                    </GridRow>
-                                </Grid>
-                            </Card.Content>
-                        </Card>
+                        {userData.teams.map((team) => {
+                            <Card style={styles.eventCard}>
+                                <Card.Content>
+                                    <Card.Header className='ui centered'>{team.name}</Card.Header>
+                                    <p><strong>Sport:</strong> {team.sport}</p>
+                                    <p><strong>Description:</strong> {team.description}</p>
+                                    <Grid className='ui centered'>
+                                        <GridRow >
+                                            <Button className='ui red'>Delete</Button>
+                                            <Button className='ui yellow'>Update</Button>
+                                        </GridRow>
+                                    </Grid>
+                                </Card.Content>
+                            </Card>
+                        })}
                     </GridRow>
                 </Grid>
             </div>

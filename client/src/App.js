@@ -52,7 +52,7 @@ function App() {
         <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/calendar" element={<Calendar />} />
+            {/* <Route path="/calendar" element={<Calendar />} /> */}
             <Route path="/events" element={<Events />} />
             <Route path="/basketball" element={<Basketball />} />
             <Route path="/soccer" element={<Soccer />} />
@@ -62,7 +62,6 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/signup" element={<SignupForm />} />
-
           </Routes>
         </Router>
       </div>

@@ -3,6 +3,7 @@ import { Button, Form } from 'semantic-ui-react';
 import { useMutation } from '@apollo/client';
 import { ADD_EVENT } from '../utils/mutations';
 import DatePicker from "react-datepicker";
+import Auth from '../utils/auth'
 import "react-datepicker/dist/react-datepicker.css";
 // import DatePicker from 'react-date-picker';
 // import SemanticDatepicker from 'react-semantic-ui-datepickers';
@@ -16,14 +17,14 @@ import "react-datepicker/dist/react-datepicker.css";
 
 
 const EventForm = () => {
-    const [formInput, setFormInput] = useState({name: '', sport: '', location: '', date: '', time: ''})
-    const [create, { error }] = useMutation(ADD_EVENT)
+    const [formInput, setFormInput] = useState({name: '', sport: '', location: '', date: ''})
+    const [create] = useMutation(ADD_EVENT)
 
     const handleDateChange = (date) => {
-        console.log(date)
+        // console.log(date)
         setFormInput({ ...formInput, date: date })
     }
-    console.log(formInput)
+    // console.log(formInput)
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -32,12 +33,13 @@ const EventForm = () => {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault()
-
+        console.log("submitting form")
+        console.log(formInput)
         try {
             const { data } = await create({
                 variables: { ...formInput }
             })
-
+            console.log(formInput)
             // Auth.login(data.create.token)
         } catch (err) {
             console.error(err)
@@ -47,8 +49,7 @@ const EventForm = () => {
             name: '',
             sport: '',
             location: '',
-            date: '',
-            time: ''
+            date: ''
         })
     }
 

@@ -16,10 +16,11 @@ const teamSchema = new Schema(
             type: String,
             max: 280
         },
-        events: [{
-            type: Schema.Types.ObjectId,
-            ref: 'Events',
-        }]
+        teamCreator: {
+            type: String,
+            required: true,
+            trim: true
+        }
     }
 );
 

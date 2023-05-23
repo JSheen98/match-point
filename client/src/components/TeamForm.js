@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'semantic-ui-react'
 import { useMutation } from '@apollo/client'
-import gql from '@apollo/client/gql'
+import { ADD_TEAM } from '../utils/mutations';
 
 // TODO: set up validation, maybe disable submit button until input is filled?
 
-const ADD_TEAM = gql`
-  mutation AddTeam($name: String!, $sport: String!, $description: String!) {
-    addTeam(name: $name, sport: $sport, description: $description) {
-      _id
-      name
-      sport
-      description
-    }
-  }
-`;
+// const ADD_TEAM = gql`
+//   mutation AddTeam($name: String!, $sport: String!, $description: String!) {
+//     addTeam(name: $name, sport: $sport, description: $description) {
+//       _id
+//       name
+//       sport
+//       description
+//     }
+//   }
+// `;
 
 const TeamForm = () => {
     const [formInput, setFormInput] = useState({ name: '', sport: '', description: '' })
@@ -71,11 +71,12 @@ const TeamForm = () => {
                     value={formInput.description}
                     onChange={handleChange}
                     name='description'
-                    placeholder='Describe the team'
+                    placeholder='Describe what level of competition you are looking for'
                     label="Description"
                 />
             </Form.Field>
-            <Button type='submit'>Submit</Button>
+            <Button disabled={!Object.values(formInput).every(value => value)}>Submit</Button>
+
         </Form>
     )
 }

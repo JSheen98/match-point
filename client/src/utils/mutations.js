@@ -25,8 +25,11 @@ export const ADD_USER = gql`
 `
 
 export const ADD_TEAM = gql`
-mutation addTeam($name: String!, $sport: String!, $events: ID!) {
-    addTeam(name: $name, sport: $sport, events: $events)   
+mutation addTeam($name: String!, $sport: String!, $description: String!) {
+    addTeam(name: $name, sport: $sport, description: $description) {
+        _id
+        teamCreator
+    }  
 }
 `
 

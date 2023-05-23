@@ -17,14 +17,20 @@ import "react-datepicker/dist/react-datepicker.css";
 const options = [
     {value: 'Baseball', text: 'Baseball'},
     {value: 'Basketball', text: 'Basketball'},
+    {value: 'Bowling', text: 'Bowling'},
+    {value: 'Boxing', text: 'Boxing'},
+    {value: 'Disc Golf', text: 'Disc Golf'},
     {value: 'Football', text: 'Football'},
     {value: 'Golf', text: 'Golf'},
     {value: 'Hockey', text: 'Hockey'},
     {value: 'Lacross', text: 'Lacross'},
     {value: 'Pickleball', text: 'Pickleball'},
+    {value: 'Racquetball', text: 'Racquetball'},
     {value: 'Rugbee', text: 'Rugbee'},
     {value: 'Soccer', text: 'Soccer'},
+    {value: 'Softball', text: 'Softball'},
     {value: 'Tennis', text: 'Tennis'},
+    {value: 'Volleyball', text: 'Volleyball'},
     {value: 'Underwater Basketweaving', text: 'Underwater Basketweaving'},
     {value: 'Other', text: 'Other'}
 ]

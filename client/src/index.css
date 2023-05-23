@@ -14,4 +14,12 @@ code {
 
 #event-form {
   margin: 60px;
+  max-width: 500px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgb(65, 226, 173);
+  padding: 50px;
+  border: 2pt;
+  border-radius: 8pt;
 }

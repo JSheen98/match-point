@@ -39,8 +39,10 @@ export const DELETE_TEAM = gql`
 `
 
 export const ADD_EVENT = gql`
-    mutation addEvent($name: String!, $sport: String!, $location: String!, $date: String!, $time: String!) {
-        addEvent(name: $name, sport: $sport, location: $location, date: $date, time: $time)
+    mutation addEvent($name: String!, $sport: String!, $location: String!, $date: String!) {
+        addEvent(name: $name, sport: $sport, location: $location, date: $date) {
+            _id
+        }
     }
 `
 

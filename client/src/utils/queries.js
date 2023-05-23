@@ -52,10 +52,9 @@ query Events($name: String!){
     Events(name: $name){
         _id
         name
+        sport
+        location
         date
-        time
-        team1
-        team2
     }
 }
 `;

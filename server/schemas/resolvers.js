@@ -98,6 +98,8 @@ const resolvers = {
         //     }
         // },
         addEvent: async (parent, args) => {
+            console.log("hitting resolver")
+            console.log(args)
             const newEvent = await Events.create(args);
             return newEvent;
         },

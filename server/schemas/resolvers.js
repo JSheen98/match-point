@@ -1,11 +1,17 @@
-const { User } = require('../models/User')
-const { Team } = require('../models/Team');
-const { Events } = require('../models/Events');
+const { User } = require('../models')
+const { Team } = require('../models');
+const { Events } = require('../models');
 const { AuthenticationError } = require('apollo-server-express')
 const { signToken } = require('../utils/auth')
 
 const resolvers = {
     Query: {
+        me: async (parent, args, context) => {
+            if (context.user) {
+                return User.findOne({ _id: context.user._id }).populate('teams').populate('events')
+            }
+            throw new AuthenticationError('You must be logged in')
+        },
         users: async () => {
             return User.find({});
         },
@@ -76,10 +82,40 @@ const resolvers = {
             const newTeam = await Team.create(args);
             return newTeam;
         },
+        deleteTeam: async (parent, { teamId }, context) => {
+            if (context.user) {
+                return Team.findOneAndDelete({ _id: teamId })
+            }
+            throw new AuthenticationError('Must be logged in to delete teams!')
+        },
+        // updateTeam: async (parent, { teamId }, context) => {
+        //     if (context.user) {
+        //         return Team.findOneAndUpdate(
+        //             { _id: teamId },
+        //             { $addToSet: { Team: {} } },
+        //             { new: true }
+        //         )
+        //     }
+        // },
         addEvent: async (parent, args) => {
             const newEvent = await Events.create(args);
             return newEvent;
-        }
+        },
+        deleteEvent: async (parent, { eventId }, context) => {
+            if (context.user) {
+                return Events.findOneAndDelete({ _id: eventId })
+            }
+            throw new AuthenticationError('Must be logged in to delete events!')
+        },
+        // updateEvent: async (parent, { eventId }, context) => {
+        //     if (context.user){
+        //         return Events.findOneAndUpdate(
+        //             { _id: eventId },
+        //             {$addToSet: { Events: {} }},
+        //             { new: true }
+        //         )
+        //     }
+        // }
     }
 }
 

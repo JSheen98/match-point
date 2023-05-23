@@ -4,13 +4,10 @@
   "description": "",
   "main": "server/server.js",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server/server.js",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
-
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
@@ -29,13 +26,14 @@
   "dependencies": {
     "@apollo/server": "^4.7.1",
     "@mobiscroll/react": "https://npm.mobiscroll.com/@mobiscroll/react-trial/-/react-trial-5.24.1.tgz",
-    "graphql": "^16.6.0",
-    "mongodb": "^5.4.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "graphql": "^16.6.0",
     "mongodb": "^5.4.0",
     "react": "^17.0.1",
+    "react-date-picker": "^10.1.0",
+    "react-datepicker": "^4.11.0",
     "react-dom": "^17.0.1",
     "react-icons": "^4.1.0",
     "react-scripts": "5.0.1",

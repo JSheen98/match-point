@@ -25,13 +25,8 @@ const eventSchema = new Schema(
             required: true,
             unique: false,
             trim: true
-        },
-        time: {
-            type: String,
-            required: true,
-            unique: false
-
         }
+
         // team1: {
         //     type: Schema.Types.ObjectId,
         //     ref: 'Team'
@@ -58,4 +53,4 @@ const eventSchema = new Schema(
 
 const Events = model('Events', eventSchema);
 
-model.exports = Events;
+module.exports = Events;

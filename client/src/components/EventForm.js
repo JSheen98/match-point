@@ -2,18 +2,28 @@ import React, { useState } from 'react';
 import { Button, Form } from 'semantic-ui-react';
 import { useMutation } from '@apollo/client';
 import { ADD_EVENT } from '../utils/mutations';
-import SemanticDatepicker from 'react-semantic-ui-datepickers';
-import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+// import DatePicker from 'react-date-picker';
+// import SemanticDatepicker from 'react-semantic-ui-datepickers';
+// import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
 
 // minDate is supposed to set a minimum date the user cannot go past when choosing the Event date.
 // comment out this const and the "minDate" line of the picker if there are issues.
 // will need to set a filter of some kind to prevent older events from rendering on homepage otherwise.
-const minDate = new Date(date('Min date', new Date(currentDate)));
+// const minDate = new Date(date('Min date', new Date(currentDate)));
+
 
 
 const EventForm = () => {
     const [formInput, setFormInput] = useState({name: '', sport: '', location: '', date: '', time: ''})
     const [create, { error }] = useMutation(ADD_EVENT)
+
+    const handleDateChange = (date) => {
+        console.log(date)
+        setFormInput({ ...formInput, date: date })
+    }
+    console.log(formInput)
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -49,7 +59,7 @@ const EventForm = () => {
                 value={formInput.name}
                 onChange={handleChange}
                 type='text'
-                name='eventname'
+                name='name'
                 placeholder='e.g. Basketball @ Rec'
                 label="Event Name"
             />
@@ -80,26 +90,13 @@ const EventForm = () => {
 {/* TOOL: https://www.npmjs.com/package/react-semantic-ui-datepickers */}
         
         <Form.Group width="equals">
-            <SemanticDatepicker
-                error={error}
-                label="Initial date"
-                id="initialDate"
-                onChange={handleChange}
-                required
-                minDate={minDate}
-                />
-        </Form.Group>
-        
-        <Form.Field>
-            <Form.Input
-                value={formInput.time}
-                onChange={handleChange}
-                type='text'
-                name='time'
-                placeholder='e.g. 1:00 pm'
-                label="time"
+            <DatePicker
+                selected={formInput.date} 
+                onChange={((date) => handleDateChange(date))}
+                showTimeSelect
+                dateFormat="Pp"
             />
-        </Form.Field>
+        </Form.Group>
       
 
     {/* //in case we need to include the code that snapshots the user's contact info*/}

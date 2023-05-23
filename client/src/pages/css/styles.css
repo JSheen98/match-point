@@ -22,6 +22,11 @@ align-items: center;
     margin: 5px;
 }
 
+/* CSS for all forms */
+.ui.form{
+    margin: 10%;
+}
+
 
 /* CSS for Sport specific pages */
 .center {

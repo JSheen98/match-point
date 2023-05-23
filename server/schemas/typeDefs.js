@@ -22,11 +22,9 @@ type Team {
 type Events {
     _id: ID!
     name: String!
-    date: String!
+    sport: String!
     location: String!
-    time: String!
-    team1: [Team]
-    team2: [Team]
+    date: String!
 }
 
 type Auth {
@@ -49,7 +47,7 @@ type Mutation {
     addUser(username: String!, email: String!, password: String!, phoneNumber: String): Auth
     addTeam(name: String!, sport: String!, events: ID!): Team
     deleteTeam(teamId: ID!): Team
-    addEvent(name: String!, date: String!, time: String!, team1: ID!, team2: ID!): Events
+    addEvent(name: String!, sport: String!, location: String!, date: String!): Events
     deleteEvent(eventId: ID!): Events
 }
 `

@@ -27,27 +27,6 @@ const eventSchema = new Schema(
             trim: true
         }
 
-        // team1: {
-        //     type: Schema.Types.ObjectId,
-        //     ref: 'Team'
-        // },
-        // team2: {
-        //     type: Schema.Types.ObjectId,
-        //     ref: 'Team'
-        // },
-// Save poster's information to event as contact info
-        // username: {
-        //     type: String,
-        //     allowNull: false,
-        // },
-        // email: {
-        //     type: String,
-        //     allowNull: false,
-        // },
-        // phone: {
-        //     type: String,
-        //     allowNull: true,
-        // }
     }
 );
 

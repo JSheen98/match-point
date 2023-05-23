@@ -99,9 +99,8 @@ const EventForm = () => {
                         onChange={selectChange}
                         // type='text'
                         name='sport'
-                        // placeholder='e.g. Basketball'
+                        placeholder='e.g. Basketball'
                         label="Sport"
-                        // class="ui selection dropdown"
                         options={options}
                     />
                 {/* </Form.Field> */}

@@ -97,11 +97,25 @@ const resolvers = {
         //         )
         //     }
         // },
-        addEvent: async (parent, args) => {
-            console.log("hitting resolver")
-            console.log(args)
-            const newEvent = await Events.create(args);
-            return newEvent;
+        addEvent: async (parent, { sport, date, name, location }, context) => {
+            console.log(context.user.username)
+            if (context.user) {
+                const newEvent = await Events.create({
+                    sport,
+                    name, 
+                    location, 
+                    date,
+                    eventCreator: context.user.username
+                })
+
+                await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { events: newEvent._id } }
+                )
+
+                return newEvent;
+            }
+            throw new AuthenticationError('Must be logged in to create events!')
         },
         deleteEvent: async (parent, { eventId }, context) => {
             if (context.user) {

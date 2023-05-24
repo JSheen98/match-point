@@ -5,6 +5,7 @@ import { QUERY_LOGGED_IN } from '../utils/queries'
 import Auth from '../utils/auth'
 import { Card, Grid, GridRow, Button } from 'semantic-ui-react'
 import { DELETE_EVENT, DELETE_TEAM } from '../utils/mutations'
+import { useParams } from "react-router-dom"
 
 const styles = {
     profileCard: {
@@ -27,7 +28,10 @@ const ProfileContainer = () => {
     const { loading, data } = useQuery(QUERY_LOGGED_IN)
     const userData = data?.me || {}
     const [deleteEvent, { deleteEventError }] = useMutation(DELETE_EVENT)
-    const [deleteTeam, { deleteTeamError }] = useMutation(DELETE_TEAM)  
+    const [deleteTeam, { deleteTeamError }] = useMutation(DELETE_TEAM) 
+    const { id } = useParams()
+
+    console.log(userData.events)
 
     const handleDeleteTeam = async(teamId) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null
@@ -79,6 +83,7 @@ const ProfileContainer = () => {
                 </Card.Content>
             </div>
             {userData.events.map((event) => {
+                return (
                 <div className='ui container' style={styles.eventContainer}>
                     <h2 className='ui centered blue header'>Your Events</h2>
                     <Grid style={styles.eventCard}>
@@ -86,8 +91,9 @@ const ProfileContainer = () => {
                             <Card style={styles.eventCard}>
                                 <Card.Content>
                                     <Card.Header className='ui centered'>{event.name}</Card.Header>
-                                    <p><strong>Description:</strong> {event.description}</p>
+                                    <p><strong>Location:</strong> {event.location}</p>
                                     <p><strong>Sport:</strong> {event.sport}</p>
+                                    <p><strong>Date:</strong> {event.date}</p>
                                     <Grid className='ui centered'>
                                         <GridRow >
                                             <Button onClick={() => handleDeleteEvent(event.eventId)} className='ui red'>Delete</Button>
@@ -99,6 +105,7 @@ const ProfileContainer = () => {
                         </GridRow>
                     </Grid>
                 </div>
+                )
             })}
             {userData.teams.map((team) => {
                 <div className='ui container' style={styles.eventContainer}>

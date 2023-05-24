@@ -19,6 +19,10 @@ export const QUERY_LOGGED_IN = gql`
            name
            date
            location
+           date
+           url
+           sport
+           eventCreator
         }
     }
 }

@@ -16,7 +16,7 @@ type Team {
     name: String!
     sport: String!
     description: String!
-    events: [Events]
+    teamCreator: String!
 }
 
 type Events {
@@ -47,7 +47,7 @@ type Query {
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!, phoneNumber: String): Auth
-    addTeam(name: String!, sport: String!, events: ID!): Team
+    addTeam(name: String!, sport: String!, description: String!): Team
     deleteTeam(teamId: ID!): Team
     addEvent(name: String!, sport: String!, location: String!, date: String!, url: String): Events
     deleteEvent(eventId: ID!): Events

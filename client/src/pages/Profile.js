@@ -28,12 +28,10 @@ const ProfileContainer = () => {
     const { loading, data } = useQuery(QUERY_LOGGED_IN)
     const userData = data?.me || {}
     const [deleteEvent, { deleteEventError }] = useMutation(DELETE_EVENT)
-    const [deleteTeam, { deleteTeamError }] = useMutation(DELETE_TEAM) 
+    const [deleteTeam, { deleteTeamError }] = useMutation(DELETE_TEAM)
     const { id } = useParams()
 
-    console.log(userData.events)
-
-    const handleDeleteTeam = async(teamId) => {
+    const handleDeleteTeam = async (teamId) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null
 
         if (!token) {
@@ -42,7 +40,10 @@ const ProfileContainer = () => {
 
         try {
             const { data } = await deleteTeam({
-                variables: { teamId }
+                variables: { 
+                    teamId,
+                    teamCreator: Auth.getProfile().data.username
+                }
             })
         } catch (err) {
             console.error(err)
@@ -58,7 +59,10 @@ const ProfileContainer = () => {
 
         try {
             const { data } = await deleteEvent({
-                variables: { eventId }
+                variables: {
+                    eventId, 
+                    eventCreator: Auth.getProfile().data.username
+                }
             })
         } catch (err) {
             console.error(err)
@@ -82,53 +86,56 @@ const ProfileContainer = () => {
                     </Card.Meta>
                 </Card.Content>
             </div>
-            {userData.events.map((event) => {
-                return (
-                <div className='ui container' style={styles.eventContainer}>
-                    <h2 className='ui centered blue header'>Your Events</h2>
-                    <Grid style={styles.eventCard}>
-                        <GridRow className='centered'>
-                            <Card style={styles.eventCard}>
-                                <Card.Content>
-                                    <Card.Header className='ui centered'>{event.name}</Card.Header>
-                                    <p><strong>Location:</strong> {event.location}</p>
-                                    <p><strong>Sport:</strong> {event.sport}</p>
-                                    <p><strong>Date:</strong> {event.date}</p>
-                                    <Grid className='ui centered'>
-                                        <GridRow >
-                                            <Button onClick={() => handleDeleteEvent(event.eventId)} className='ui red'>Delete</Button>
-                                            <Button className='ui yellow'>Update</Button>
-                                        </GridRow>
-                                    </Grid>
-                                </Card.Content>
-                            </Card>
-                        </GridRow>
-                    </Grid>
-                </div>
-                )
-            })}
-            {userData.teams.map((team) => {
-                <div className='ui container' style={styles.eventContainer}>
-                    <h2 className='ui centered blue header'>Your Teams</h2>
-                    <Grid style={styles.eventCard}>
-                        <GridRow className='centered'>
-                            <Card style={styles.eventCard}>
-                                <Card.Content>
-                                    <Card.Header className='ui centered'>{team.name}</Card.Header>
-                                    <p><strong>Sport:</strong> {team.sport}</p>
-                                    <p><strong>Description:</strong> {team.description}</p>
-                                    <Grid className='ui centered'>
-                                        <GridRow >
-                                            <Button onClick={() => handleDeleteTeam(team.teamId)} className='ui red'>Delete</Button>
-                                            <Button className='ui yellow'>Update</Button>
-                                        </GridRow>
-                                    </Grid>
-                                </Card.Content>
-                            </Card>
-                        </GridRow>
-                    </Grid>
-                </div>
-            })}
+            <div className='ui container' style={styles.eventContainer}>
+                <h2 className='ui centered blue header'>Your Events</h2>
+                <Grid style={styles.eventCard}>
+                    <GridRow className='centered'>
+                        {userData.events.map((event) => {
+                            return (
+                                <Card style={styles.eventCard}>
+                                    <Card.Content>
+                                        <Card.Header className='ui centered'>{event.name}</Card.Header>
+                                        <p><strong>Location:</strong> {event.location}</p>
+                                        <p><strong>Sport:</strong> {event.sport}</p>
+                                        <p><strong>Date:</strong> {event.date}</p>
+                                        <Grid className='ui centered'>
+                                            <GridRow >
+                                                <Button onClick={() => handleDeleteEvent(event._id)} className='ui red'>Delete</Button>
+                                                <Button className='ui yellow'>Update</Button>
+                                            </GridRow>
+                                        </Grid>
+                                    </Card.Content>
+                                </Card>
+                            )
+                        })}
+                    </GridRow>
+                </Grid>
+            </div>
+
+            <div className='ui container' style={styles.eventContainer}>
+                <h2 className='ui centered blue header'>Your Teams</h2>
+                <Grid style={styles.eventCard}>
+                    <GridRow className='centered'>
+                        {userData.teams.map((team) => {
+                            return (
+                                <Card style={styles.eventCard}>
+                                    <Card.Content>
+                                        <Card.Header className='ui centered'>{team.name}</Card.Header>
+                                        <p><strong>Sport:</strong> {team.sport}</p>
+                                        <p><strong>Description:</strong> {team.description}</p>
+                                        <Grid className='ui centered'>
+                                            <GridRow >
+                                                <Button onClick={() => handleDeleteTeam(team._id)} className='ui red'>Delete</Button>
+                                                {/* <Button className='ui yellow'>Update</Button> */}
+                                            </GridRow>
+                                        </Grid>
+                                    </Card.Content>
+                                </Card>
+                            )
+                        })}
+                    </GridRow>
+                </Grid>
+            </div>
         </div>
     )
 }

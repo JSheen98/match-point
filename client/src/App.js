@@ -19,7 +19,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from './pages/Profile'
 import LoginForm from './components/LoginForm'
 import SignupForm from './components/SignupForm'
-import EventList from './components/EventList';
+// import EventList from './components/EventList';
 import TeamForm from "./components/TeamForm";
 
 const httpLink = createHttpLink({  
@@ -67,7 +67,7 @@ function App() {
             <Route path="/Team" element={<TeamForm />} />
           </Routes>
         </Router>
-        <EventList />
+        {/* <EventList /> */}
       </div>
     
     </ApolloProvider>

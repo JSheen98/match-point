@@ -19,10 +19,10 @@ function EventList() {
         <>
         <h1>Upcoming Events</h1>
         <Segment style={{overflow: 'auto', maxHeight: 400 }}>
-        <div class="ui three stackable cards">
-            <Card style={{ backgroundColor: 'lightblue' }} class="ui fluid card">
+        <div className="ui three stackable cards">
+            <Card style={{ backgroundColor: 'lightblue' }} className="ui fluid card">
                 <Card.Header style={{ backgroundColor: '', padding: '10px', marginTop: '10px' }} className='ui centered blue'>Event Name</Card.Header>
-                <Card.Content class="content">
+                <Card.Content className="content">
                     <p><strong>Sport:</strong></p>
                     <p><strong>Description:</strong></p>
                     <p><strong>Location:</strong></p>

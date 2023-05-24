@@ -19,9 +19,10 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from './pages/Profile'
 import LoginForm from './components/LoginForm'
 import SignupForm from './components/SignupForm'
+import EventList from './components/EventList';
 import TeamForm from "./components/TeamForm";
 
-const httpLink = createHttpLink({
+const httpLink = createHttpLink({  
   uri: '/graphql'
 })
 
@@ -66,6 +67,7 @@ function App() {
             <Route path="/Team" element={<TeamForm />} />
           </Routes>
         </Router>
+        <EventList />
       </div>
     
     </ApolloProvider>

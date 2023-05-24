@@ -35,7 +35,7 @@ mutation addTeam($name: String!, $sport: String!, $description: String!) {
 
 export const DELETE_TEAM = gql`
     mutation deleteTeam($teamId: ID!) {
-        teamId(teamId: $teamId) {
+        deleteTeam(teamId: $teamId) {
             _id
         }
     }

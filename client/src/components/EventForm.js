@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 // import Select from 'react-select';
-import { Button, Form } from 'semantic-ui-react';
-import { useMutation } from '@apollo/client';
-import { ADD_EVENT } from '../utils/mutations';
-import DatePicker from "react-datepicker";
+import { Button, Form } from 'semantic-ui-react'
+import { useMutation } from '@apollo/client'
+import { ADD_EVENT } from '../utils/mutations'
+import DatePicker from "react-datepicker"
 // import Auth from '../utils/auth'
-import "react-datepicker/dist/react-datepicker.css";
+import "react-datepicker/dist/react-datepicker.css"
 import { useParams } from "react-router-dom"
 import Auth from '../utils/auth'
 
@@ -31,7 +31,7 @@ const options = [
     {value: 'Football', text: 'Football'},
     {value: 'Golf', text: 'Golf'},
     {value: 'Hockey', text: 'Hockey'},
-    {value: 'Lacross', text: 'Lacross'},
+    {value: 'Lacrosse', text: 'Lacrosse'},
     {value: 'Pickleball', text: 'Pickleball'},
     {value: 'Racquetball', text: 'Racquetball'},
     {value: 'Rugbee', text: 'Rugbee'},
@@ -112,7 +112,7 @@ const EventForm = () => {
                         name='sport'
                         // placeholder='e.g. Basketball'
                         label="Sport"
-                        // class="ui selection dropdown"
+                        // className="ui selection dropdown"
                         options={options}
                     />
                 {/* </Form.Field> */}

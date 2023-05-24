@@ -78,13 +78,36 @@ const resolvers = {
             // return token and user
             return { token, user }
         },
-        addTeam: async (parent, args) => {
-            const newTeam = await Team.create(args);
-            return newTeam;
+        addTeam: async (parent, { name, sport, description }, context) => {
+            if (context.user) {
+                const newTeam = await Team.create({
+                    name,
+                    sport,
+                    description,
+                    teamCreator: context.user.username
+                });
+
+                await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { teams: newTeam._id } }
+                )
+
+                return newTeam;
+            }
+            throw new AuthenticationError('Must be logged in to create teams!')
         },
         deleteTeam: async (parent, { teamId }, context) => {
             if (context.user) {
-                return Team.findOneAndDelete({ _id: teamId })
+                const deleteTeam = await Team.findOneAndDelete({ 
+                    _id: teamId,
+                    teamCreator: context.user.username
+                })
+
+                await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    { $pull: { teams: deleteTeam._id } }
+                )
+                return deleteTeam
             }
             throw new AuthenticationError('Must be logged in to delete teams!')
         },
@@ -98,12 +121,11 @@ const resolvers = {
         //     }
         // },
         addEvent: async (parent, { sport, date, name, location }, context) => {
-            console.log(context.user.username)
             if (context.user) {
                 const newEvent = await Events.create({
                     sport,
-                    name, 
-                    location, 
+                    name,
+                    location,
                     date,
                     eventCreator: context.user.username
                 })
@@ -119,7 +141,16 @@ const resolvers = {
         },
         deleteEvent: async (parent, { eventId }, context) => {
             if (context.user) {
-                return Events.findOneAndDelete({ _id: eventId })
+                const deleteEvent = await Events.findOneAndDelete({ 
+                    _id: eventId,
+                    eventCreator: context.user.username
+                })
+
+                await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    { $pull: { events: deleteEvent._id } }
+                )
+                return deleteEvent
             }
             throw new AuthenticationError('Must be logged in to delete events!')
         },

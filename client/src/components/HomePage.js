@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Form } from "react-router-dom";
+import React from 'react';
 import EventForm from '../components/EventForm';
 import EventList from '../components/EventList';
 
+// HompePage component
 const HomePage = () => {
 
     return (

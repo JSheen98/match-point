@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 
+// Team model
 const teamSchema = new Schema(
     {
         name: {
@@ -16,6 +17,7 @@ const teamSchema = new Schema(
             type: String,
             max: 280
         },
+        // Puts the creator of the team's username here
         teamCreator: {
             type: String,
             required: true,

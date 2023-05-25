@@ -1,6 +1,6 @@
 // function to format a timestamp, accepts the timestamp and an `options` object as parameters
 module.exports = (timestamp) => {
-    // create month object
+    // creates month object
     const months = {
         0: 'Jan',
         1: 'Feb',

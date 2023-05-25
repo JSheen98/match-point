@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 const secret = 'dontreadthis'
 const expiration = '2h'
 
+// Exports the auth middleware for the server
 module.exports = {
     authMiddleware: function ({ req }) {
         let token = req.body.token || req.query.token || req.headers.authorization

@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 
+// front end queries
 export const QUERY_LOGGED_IN = gql`
 {
     me {
@@ -59,6 +60,7 @@ export const QUERY_EVENT = gql`
         sport
         location
         date
+        eventCreator
     }
 }
 `

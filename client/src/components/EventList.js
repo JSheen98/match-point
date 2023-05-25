@@ -1,58 +1,55 @@
-import React, { useState } from 'react';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useQuery, useMutation } from '@apollo/client'
 import { Card, Segment } from 'semantic-ui-react';
-import { useQuery } from '@apollo/client'
 import { QUERY_EVENT } from '../utils/queries';
-// import { events } from '../../../server/models/User';
-const EventList = () => {
-    const { data } = useQuery(QUERY_EVENT)
-    // const [event, setEvent] = useState([]);
-    const eventData = data?.events || {}
-    // const addEventItem = (item) => {
-    //     console.log(item);
-    //     if (!item.text) {
-    //         return;
-    //     }
-    //     const newEvent = [item, ...event];
-    //     console.log(newEvent);
 
-// function EventList() {
-//     const [event, setEvent] = useState([]);
+function EventList() {
+    const [event, setEvent] = useState([]);
+    const { loading, data } = useQuery(QUERY_EVENT)
+    const eventData = data?.events || []
+    useEffect(() => {
+      console.log(data)
+        
+    }, [data])
+    
 
-//     const addEventItem = (item) => {
-//         console.log(item);
-//         if (!item.text) {
-//             return;
-//         }
-//         const newEvent = [item, ...event];
-//         console.log(newEvent);
+    const addEventItem = (item) => {
+        console.log(item);
+        if (!item.text) {
+            return;
+        }
+        const newEvent = [item, ...event];
+        console.log(newEvent);
 
-//         setEvent(newEvent);
-//     };
+        setEvent(newEvent);
+    };
 
-    // if (loading) {
-    //     return <h2>Loading Profile...</h2>
-    // }
+    if (loading) {
+        return <h2>Loading Profile...</h2>
+    }
 
     return (
         <>
             <h1>Upcoming Events</h1>
-            {eventData.map((eventListItem) => (
-                <Segment style={{ overflow: 'auto', maxHeight: 400 }}>
+            {eventData.map((EventListItem) => {
+                return (
+                    <Segment key={EventListItem._id} style={{ overflow: 'auto', maxHeight: 400 }}>
                     <div className="ui three stackable cards">
                         <Card style={{ backgroundColor: 'lightblue' }} className="ui fluid card">
-                            <Card.Header style={{ backgroundColor: '', padding: '10px', marginTop: '10px' }} className='ui centered blue'>{eventListItem.name}</Card.Header>
+                            <Card.Header style={{ padding: '10px', marginTop: '10px' }} className='ui centered blue'>{EventListItem.name}</Card.Header>
                             <Card.Content className="content">
-                                <p><strong>{eventListItem.sport}</strong></p>
-                                <p><strong>{eventListItem.location}</strong></p>
-                                <p><strong>{eventListItem.date}</strong></p>
+                                <p><strong>Sport: {EventListItem.sport}</strong></p>
+                                <p><strong>Location: {EventListItem.location}</strong></p>
+                                <p><strong>Date: {EventListItem.date}</strong></p>
                             </Card.Content>
                         </Card>
                     </div>
-                </Segment>
-))}
-        </>
+        </Segment>
+            )
+        })}
+    </>
     )
+
 }
 
 export default EventList;

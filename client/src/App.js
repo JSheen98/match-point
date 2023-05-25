@@ -55,7 +55,7 @@ function App() {
         <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/calendar" element={<Calendar />} />
+            {/* <Route path="/calendar" element={<Calendar />} /> */}
             <Route path="/events" element={<Events />} />
             <Route path="/basketball" element={<Basketball />} />
             <Route path="/soccer" element={<Soccer />} />

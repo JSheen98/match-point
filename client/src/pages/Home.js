@@ -1,5 +1,6 @@
 import React from 'react';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {useNavigate} from 'react-router-dom';
 import './css/styles.css';
 
@@ -56,6 +57,8 @@ const Home = () => {
 
 };
 =======
+=======
+>>>>>>> 2d5e2224369508134ad97e7b5c8de8177791fdc0
 import HomePage from '../components/HomePage';
 
 const Home = () => {
@@ -66,6 +69,9 @@ const Home = () => {
     )
 }
 
+<<<<<<< HEAD
+>>>>>>> 2d5e2224369508134ad97e7b5c8de8177791fdc0
+=======
 >>>>>>> 2d5e2224369508134ad97e7b5c8de8177791fdc0
 
 export default Home;

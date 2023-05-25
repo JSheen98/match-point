@@ -30,8 +30,18 @@ function EventList() {
 
     return (
         <>
-            <h1>Upcoming Events</h1>
-            {eventData.map((EventListItem) => {
+            {/* <h1>Upcoming Events</h1> */}
+            {eventData
+            .filter((EventListItem) => {
+                const eventDate = new Date(EventListItem.date);
+                const today = new Date();
+                return (
+                    eventDate.getFullYear() === today.getFullYear() &&
+                    eventDate.getMonth() === today.getMonth() &&
+                    eventDate.getDate() === today.getDate()
+                );
+            })
+            .map((EventListItem) => {
                 return (
                     <Segment key={EventListItem._id} style={{ overflow: 'auto', maxHeight: 400 }}>
                     <div className="ui three stackable cards">

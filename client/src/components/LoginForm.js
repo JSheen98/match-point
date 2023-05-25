@@ -6,9 +6,17 @@ import Auth from '../utils/auth'
 
 // TODO: set up validation, error messaging?
 
+
 const styles = {
-    container: {
-        margin: '25px'
+    lime: {
+        backgroundColor: 'rgb(65, 226, 173)',
+        borderStyle: 'solid',
+        borderWidth: '5px',
+        borderColor: 'black',
+        margin: '25px',
+    },
+    black: {
+        color: 'black'
     }
 }
 
@@ -41,7 +49,9 @@ const LoginForm = () => {
     }
 
     return (
-        <div style={styles.container}>
+        <div style={styles.lime}>
+            <h1>Login to make teams, events or view your profile!</h1>
+            <h4>New account? <a href='/signup' style={styles.black}>click here</a></h4>
             <Form onSubmit={handleFormSubmit}>
                 <Form.Field>
                     <Form.Input

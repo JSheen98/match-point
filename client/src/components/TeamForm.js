@@ -124,7 +124,6 @@ const TeamForm = () => {
                 />
             </Form.Field>
             <Button className='ui black' onClick={profila} style={styles.bord} disabled={!Object.values(formInput).every(value => value)}>Submit</Button>
-
             </Form>
         </div>
     )

@@ -6,23 +6,27 @@ type User {
     username: String!
     email: String!
     phoneNumber: String
-    team: [Team]
+    createdAt: String
+    teams: [Team]
+    events: [Events]
 }
 
 type Team {
     _id: ID!
     name: String!
     sport: String!
-    events: [Events]
+    description: String!
+    teamCreator: String!
 }
 
 type Events {
     _id: ID!
     name: String!
+    sport: String!
+    location: String!
     date: String!
-    time: String!
-    team1: [Team]
-    team2: [Team]
+    url: String
+    eventCreator: String
 }
 
 type Auth {
@@ -31,6 +35,7 @@ type Auth {
 }
 
 type Query {
+    me: User
     users: [User]
     user(_id: String): [User]
     teams: [Team]
@@ -42,8 +47,10 @@ type Query {
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!, phoneNumber: String): Auth
-    addTeam(name: String!, sport: String!, events: ID!): Team
-    addEvent(name: String!, date: String!, time: String!, team1: ID!, team2: ID!): Events
+    addTeam(name: String!, sport: String!, description: String!): Team
+    deleteTeam(teamId: ID!): Team
+    addEvent(name: String!, sport: String!, location: String!, date: String!, url: String): Events
+    deleteEvent(eventId: ID!): Events
 }
 `
 

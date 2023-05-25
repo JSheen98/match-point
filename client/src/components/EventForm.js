@@ -1,23 +1,66 @@
-import React, { useState } from 'react';
-import { Button, Form } from 'semantic-ui-react';
-import { useMutation } from '@apollo/client';
-import { ADD_EVENT } from '../utils/mutations';
-import SemanticDatepicker from 'react-semantic-ui-datepickers';
-import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
+import React, { useState } from 'react'
+// import Select from 'react-select';
+import { Button, Form } from 'semantic-ui-react'
+import { useMutation } from '@apollo/client'
+import { ADD_EVENT } from '../utils/mutations'
+import DatePicker from "react-datepicker"
+// import Auth from '../utils/auth'
+import "react-datepicker/dist/react-datepicker.css"
+import { useParams } from "react-router-dom"
+import Auth from '../utils/auth'
 
-// minDate is supposed to set a minimum date the user cannot go past when choosing the Event date.
-// comment out this const and the "minDate" line of the picker if there are issues.
-// will need to set a filter of some kind to prevent older events from rendering on homepage otherwise.
-const minDate = new Date(date('Min date', new Date(currentDate)));
+// import DatePicker from 'react-date-picker';
+// import SemanticDatepicker from 'react-semantic-ui-datepickers';
+// import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
 
+
+
+// const styles = {
+//     container: {
+//         margin: '4%',
+//         width: '500px'
+//     }
+// }
+
+const options = [
+    {value: 'Baseball', text: 'Baseball'},
+    {value: 'Basketball', text: 'Basketball'},
+    {value: 'Bowling', text: 'Bowling'},
+    {value: 'Boxing', text: 'Boxing'},
+    {value: 'Disc Golf', text: 'Disc Golf'},
+    {value: 'Football', text: 'Football'},
+    {value: 'Golf', text: 'Golf'},
+    {value: 'Hockey', text: 'Hockey'},
+    {value: 'Lacrosse', text: 'Lacrosse'},
+    {value: 'Pickleball', text: 'Pickleball'},
+    {value: 'Racquetball', text: 'Racquetball'},
+    {value: 'Rugbee', text: 'Rugbee'},
+    {value: 'Soccer', text: 'Soccer'},
+    {value: 'Softball', text: 'Softball'},
+    {value: 'Tennis', text: 'Tennis'},
+    {value: 'Volleyball', text: 'Volleyball'},
+    {value: 'Underwater Basketweaving', text: 'Underwater Basketweaving'},
+    {value: 'Other', text: 'Other'}
+]
 
 const EventForm = () => {
-    const [formInput, setFormInput] = useState({name: '', sport: '', location: '', date: '', time: ''})
-    const [create, { error }] = useMutation(ADD_EVENT)
+    const { id } = useParams()
+    const [formInput, setFormInput] = useState({ name: '', sport: '', location: '', date: '', url: 'test' })
+    const [create] = useMutation(ADD_EVENT)
+
+    const handleDateChange = (date) => {
+        // console.log(date)
+        setFormInput({ ...formInput, date: date })
+    }
+    // console.log(formInput)
 
     const handleChange = (e) => {
         const { name, value } = e.target
         setFormInput({ ...formInput, [name]: value })
+    }
+
+    const selectChange = (e) => {
+        setFormInput({ ...formInput, sport: e.target.textContent })
     }
 
     const handleFormSubmit = async (e) => {
@@ -25,9 +68,11 @@ const EventForm = () => {
 
         try {
             const { data } = await create({
-                variables: { ...formInput }
+                variables: {
+                    ...formInput,
+                    eventCreator: Auth.getProfile().data.username
+                }
             })
-
             // Auth.login(data.create.token)
         } catch (err) {
             console.error(err)
@@ -37,104 +82,65 @@ const EventForm = () => {
             name: '',
             sport: '',
             location: '',
-            date: '',
-            time: ''
+            date: ''
         })
     }
 
     return (
-        <Form onSubmit={handleFormSubmit}>
-        <Form.Field>
-            <Form.Input
-                value={formInput.name}
-                onChange={handleChange}
-                type='text'
-                name='eventname'
-                placeholder='e.g. Basketball @ Rec'
-                label="Event Name"
-            />
-        </Form.Field>
 
-        <Form.Field>
-            <Form.Input
-                value={formInput.sport}
-                onChange={handleChange}
-                type='text'
-                name='sport'
-                placeholder='e.g. Backetball'
-                label="sport"
-            />
-        </Form.Field>
+        <div 
+        id="event-form"
+        // style={styles.container}
+        >
+            <Form onSubmit={handleFormSubmit}>
+                <Form.Field>
+                    <Form.Input
+                        value={formInput.name}
+                        onChange={handleChange}
+                        type='text'
+                        name='name'
+                        placeholder='e.g. Basketball @ Rec'
+                        label="Event Name"
+                    />
+                </Form.Field>
 
-        <Form.Field>
-            <Form.Input
-                value={formInput.location}
-                onChange={handleChange}
-                type='text'
-                name='location'
-                placeholder='e.g. 123 Address Rd'
-                label="location"
-            />
-        </Form.Field>  
-{/* For date, might need dropdown calendar. */}
-{/* TOOL: https://www.npmjs.com/package/react-semantic-ui-datepickers */}
+                {/* <Form.Field> */}
+                    <Form.Select
+                        value={formInput.sport}
+                        onChange={selectChange}
+                        // type='text'
+                        name='sport'
+                        // placeholder='e.g. Basketball'
+                        label="Sport"
+                        // className="ui selection dropdown"
+                        options={options}
+                    />
+                {/* </Form.Field> */}
+
+                <Form.Field>
+                    <Form.Input
+                        value={formInput.location}
+                        onChange={handleChange}
+                        type='text'
+                        name='location'
+                        placeholder='e.g. 123 Address Rd'
+                        label="Location"
+                    />
+                </Form.Field>  
+                
+                <span>Pick Date & Time</span>
+                <Form.Group width="equals">
+                    <DatePicker
+                        selected={formInput.date} 
+                        onChange={((date) => handleDateChange(date))}
+                        showTimeSelect
+                        dateFormat="Pp"
+                    />
+                </Form.Group>
         
-        <Form.Group width="equals">
-            <SemanticDatepicker
-                error={error}
-                label="Initial date"
-                id="initialDate"
-                onChange={handleChange}
-                required
-                minDate={minDate}
-                />
-        </Form.Group>
-        
-        <Form.Field>
-            <Form.Input
-                value={formInput.time}
-                onChange={handleChange}
-                type='text'
-                name='time'
-                placeholder='e.g. 1:00 pm'
-                label="time"
-            />
-        </Form.Field>
-      
-
-    {/* //in case we need to include the code that snapshots the user's contact info*/}
-        {/* <Form.Field>
-            <Form.Input
-                value={formInput.username}
-                onChange={handleChange}
-                type='text'
-                name='name'
-                placeholder='e.g. User1'
-                label="Username"
-            />
-        </Form.Field>
-        <Form.Field>
-            <Form.Input
-                value={formInput.email}
-                onChange={handleChange}
-                type='email'
-                name='email'
-                placeholder='example@email.com'
-                label="Email"
-            />
-        </Form.Field>
-        <Form.Field>
-            <Form.Input
-                value={formInput.phoneNumber}
-                onChange={handleChange}
-                type='number'
-                name='phoneNumber'
-                placeholder='1-800-555-5555'
-                label="Phone Number"
-            />
-        </Form.Field> */}
-        <Button type='submit'>Submit</Button>
-    </Form>
+                <Button type='submit'>Submit</Button>
+            </Form>
+        </div>
     )
 }
 

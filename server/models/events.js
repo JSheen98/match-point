@@ -14,7 +14,7 @@ const eventSchema = new Schema(
             required: true,
             trim: true
         },
-        location :{
+        location: {
             type: String,
             required: true,
             unique: false,
@@ -26,33 +26,11 @@ const eventSchema = new Schema(
             unique: false,
             trim: true
         },
-        time: {
+        eventCreator: {
             type: String,
             required: true,
-            unique: false
-
+            trim: true
         }
-        // team1: {
-        //     type: Schema.Types.ObjectId,
-        //     ref: 'Team'
-        // },
-        // team2: {
-        //     type: Schema.Types.ObjectId,
-        //     ref: 'Team'
-        // },
-// Save poster's information to event as contact info
-        // username: {
-        //     type: String,
-        //     allowNull: false,
-        // },
-        // email: {
-        //     type: String,
-        //     allowNull: false,
-        // },
-        // phone: {
-        //     type: String,
-        //     allowNull: true,
-        // }
     }
 );
 

@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import {useNavigate} from 'react-router-dom';
 import './css/styles.css';
 
@@ -54,5 +55,17 @@ const Home = () => {
     )
 
 };
+=======
+import HomePage from '../components/HomePage';
+
+const Home = () => {
+    return (
+        <>
+          <HomePage />
+        </>
+    )
+}
+
+>>>>>>> 2d5e2224369508134ad97e7b5c8de8177791fdc0
 
 export default Home;

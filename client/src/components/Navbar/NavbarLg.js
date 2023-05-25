@@ -27,6 +27,14 @@ export default function NavbarLg() {
           active={activeItem === 'Match Point'}
           onClick={handleItemClick}
         />
+          {/* team icon */}
+        <Menu.Item
+          as={Link}
+          to="/Team"
+          name='Team'
+          active={activeItem ==='Team'}
+          onClick={handleItemClick}
+        />
         <Menu.Item
         position="right">
             <img style={style.size} src={Logo} alt='logo'/>

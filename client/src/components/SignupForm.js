@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client'
 import { ADD_USER } from '../utils/mutations'
 import Auth from '../utils/auth'
 
-// TODO: set up validation, maybe disable submit button until input is filled?
+// TODO: set up validation, error messaging?
 // make username, email, password required, phone number shouldn't be
 
 const styles = {
@@ -26,13 +26,10 @@ const SignupForm = () => {
         e.preventDefault()
 
         try {
-            console.log("1: ", formInput)
             const { data } = await addUser({
                 variables: { ...formInput }
             })
-
-            console.log("2: ", formInput)
-            console.log("3: ", data)
+            
             Auth.login(data.addUser.token)
         } catch (err) {
             console.error(err)
@@ -88,7 +85,7 @@ const SignupForm = () => {
                     label="Phone Number"
                 />
             </Form.Field>
-            <Button type='submit'>Submit</Button>
+            <Button disabled={!(formInput.username && formInput.email && formInput.password)} type='submit'>Submit</Button>
         </Form>
         </div>
     )

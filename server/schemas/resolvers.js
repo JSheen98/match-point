@@ -6,6 +6,12 @@ const { signToken } = require('../utils/auth')
 
 const resolvers = {
     Query: {
+        me: async (parent, args, context) => {
+            if (context.user) {
+                return User.findOne({ _id: context.user._id }).populate('teams').populate('events')
+            }
+            throw new AuthenticationError('You must be logged in')
+        },
         users: async () => {
             return User.find({});
         },
@@ -72,14 +78,91 @@ const resolvers = {
             // return token and user
             return { token, user }
         },
-        addTeam: async (parent, args) => {
-            const newTeam = await Team.create(args);
-            return newTeam;
+        addTeam: async (parent, { name, sport, description }, context) => {
+            if (context.user) {
+                const newTeam = await Team.create({
+                    name,
+                    sport,
+                    description,
+                    teamCreator: context.user.username
+                });
+
+                await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { teams: newTeam._id } }
+                )
+
+                return newTeam;
+            }
+            throw new AuthenticationError('Must be logged in to create teams!')
         },
-        addEvent: async (parent, args) => {
-            const newEvent = await Events.create(args);
-            return newEvent;
-        }
+        deleteTeam: async (parent, { teamId }, context) => {
+            if (context.user) {
+                const deleteTeam = await Team.findOneAndDelete({ 
+                    _id: teamId,
+                    teamCreator: context.user.username
+                })
+
+                await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    { $pull: { teams: deleteTeam._id } }
+                )
+                return deleteTeam
+            }
+            throw new AuthenticationError('Must be logged in to delete teams!')
+        },
+        // updateTeam: async (parent, { teamId }, context) => {
+        //     if (context.user) {
+        //         return Team.findOneAndUpdate(
+        //             { _id: teamId },
+        //             { $addToSet: { Team: {} } },
+        //             { new: true }
+        //         )
+        //     }
+        // },
+        addEvent: async (parent, { sport, date, name, location }, context) => {
+            if (context.user) {
+                const newEvent = await Events.create({
+                    sport,
+                    name,
+                    location,
+                    date,
+                    eventCreator: context.user.username
+                })
+
+                await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { events: newEvent._id } }
+                )
+
+                return newEvent;
+            }
+            throw new AuthenticationError('Must be logged in to create events!')
+        },
+        deleteEvent: async (parent, { eventId }, context) => {
+            if (context.user) {
+                const deleteEvent = await Events.findOneAndDelete({ 
+                    _id: eventId,
+                    eventCreator: context.user.username
+                })
+
+                await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    { $pull: { events: deleteEvent._id } }
+                )
+                return deleteEvent
+            }
+            throw new AuthenticationError('Must be logged in to delete events!')
+        },
+        // updateEvent: async (parent, { eventId }, context) => {
+        //     if (context.user){
+        //         return Events.findOneAndUpdate(
+        //             { _id: eventId },
+        //             {$addToSet: { Events: {} }},
+        //             { new: true }
+        //         )
+        //     }
+        // }
     }
 }
 

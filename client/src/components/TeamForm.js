@@ -4,6 +4,21 @@ import { useMutation } from '@apollo/client'
 import { ADD_TEAM } from '../utils/mutations'
 import Auth from '../utils/auth'
 
+const styles = {
+    lime: {
+        backgroundColor: 'rgb(65, 226, 173)',
+        borderStyle: 'solid',
+        borderWidth: '5px',
+        borderColor: 'black',
+    },
+bord: {
+    borderStyle: 'solid',
+    borderWidth: '5px',
+    borderColor: 'black',
+}
+}
+
+
 // TODO: set up validation, maybe disable submit button until input is filled?
 
 const options = [
@@ -63,12 +78,14 @@ const TeamForm = () => {
     }
 
     return (
-        <div id='event-form'>
+        <div style={styles.lime} id='event-form'>
+            <h1>New Team</h1>
         <Form onSubmit={handleFormSubmit}>
             <Form.Field>
                 <Form.Input
                     value={formInput.name}
                     onChange={handleChange}
+                    style={styles.bord}
                     type='text'
                     name='name'
                     placeholder='Team name'
@@ -79,6 +96,7 @@ const TeamForm = () => {
                 <Form.Select
                     value={formInput.sport}
                     onChange={selectChange}
+                    style={styles.bord}
                     // type='text'
                     name='sport'
                     // placeholder='Sport'
@@ -90,12 +108,13 @@ const TeamForm = () => {
                 <Form.TextArea
                     value={formInput.description}
                     onChange={handleChange}
+                    style={styles.bord}
                     name='description'
                     placeholder='Describe what level of competition you are looking for'
                     label="Description"
                 />
             </Form.Field>
-            <Button disabled={!Object.values(formInput).every(value => value)}>Submit</Button>
+            <Button className='ui black' style={styles.bord} disabled={!Object.values(formInput).every(value => value)}>Submit</Button>
 
         </Form>
         </div>

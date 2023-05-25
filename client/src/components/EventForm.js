@@ -13,14 +13,19 @@ import Auth from '../utils/auth'
 // import SemanticDatepicker from 'react-semantic-ui-datepickers';
 // import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
 
-
-
-// const styles = {
-//     container: {
-//         margin: '4%',
-//         width: '500px'
-//     }
-// }
+const styles = {
+    lime: {
+        backgroundColor: 'rgb(65, 226, 173)',
+        borderStyle: 'solid',
+        borderWidth: '5px',
+        borderColor: 'black',
+    },
+bord: {
+    borderStyle: 'solid',
+    borderWidth: '5px',
+    borderColor: 'black',
+}
+}
 
 const options = [
     {value: 'Baseball', text: 'Baseball'},
@@ -63,6 +68,10 @@ const EventForm = () => {
         setFormInput({ ...formInput, sport: e.target.textContent })
     }
 
+const profila = () => {
+    window.location.href= '/profile'
+}
+
     const handleFormSubmit = async (e) => {
         e.preventDefault()
 
@@ -89,6 +98,7 @@ const EventForm = () => {
     return (
 
         <div 
+        style={styles.lime} 
         id="event-form"
         // style={styles.container}
         >
@@ -97,6 +107,7 @@ const EventForm = () => {
                     <Form.Input
                         value={formInput.name}
                         onChange={handleChange}
+                        style={styles.bord} 
                         type='text'
                         name='name'
                         placeholder='e.g. Basketball @ Rec'
@@ -108,6 +119,7 @@ const EventForm = () => {
                     <Form.Select
                         value={formInput.sport}
                         onChange={selectChange}
+                        style={styles.bord} 
                         // type='text'
                         name='sport'
                         // placeholder='e.g. Basketball'
@@ -121,6 +133,7 @@ const EventForm = () => {
                     <Form.Input
                         value={formInput.location}
                         onChange={handleChange}
+                        style={styles.bord} 
                         type='text'
                         name='location'
                         placeholder='e.g. 123 Address Rd'
@@ -129,7 +142,7 @@ const EventForm = () => {
                 </Form.Field>  
                 
                 <span>Pick Date & Time</span>
-                <Form.Group width="equals">
+                <Form.Group        style={styles.bord}  width="equals">
                     <DatePicker
                         selected={formInput.date} 
                         onChange={((date) => handleDateChange(date))}
@@ -138,7 +151,7 @@ const EventForm = () => {
                     />
                 </Form.Group>
         
-                <Button type='submit'>Submit</Button>
+                <Button className='ui black' onClick={profila} type='submit'>Submit</Button>
             </Form>
         </div>
     )

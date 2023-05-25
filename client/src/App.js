@@ -67,7 +67,6 @@ function App() {
             <Route path="/Team" element={<TeamForm />} />
           </Routes>
         </Router>
-        <EventList />
       </div>
     
     </ApolloProvider>

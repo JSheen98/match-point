@@ -8,7 +8,7 @@ const HomePage = () => {
     return (
         <div>
             <EventForm />
-            {/* <EventList /> */}
+            <EventList />
         </div>
     )
 } 

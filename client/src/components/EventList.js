@@ -1,38 +1,48 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
+import React from 'react';
 import { Card, Segment } from 'semantic-ui-react';
+import { useQuery } from '@apollo/client'
+import { QUERY_EVENT } from '../utils/queries';
+// import { events } from '../../../server/models/User';
 
-function EventList() {
-    const [event, setEvent] = useState([]);
+const EventList = () => {
+    const { data } = useQuery(QUERY_EVENT)
+    // const [event, setEvent] = useState([]);
+    const eventData = data?.events || {}
+    // const addEventItem = (item) => {
+    //     console.log(item);
+    //     if (!item.text) {
+    //         return;
+    //     }
+    //     const newEvent = [item, ...event];
+    //     console.log(newEvent);
 
-    const addEventItem = (item) => {
-        console.log(item);
-        if (!item.text) {
-            return;
-        }
-        const newEvent = [item, ...event];
-        console.log(newEvent);
+    //     setEvent(newEvent);
+    // };
 
-        setEvent(newEvent);
-    };
+    // if (loading) {
+    //     return <h2>Loading Profile...</h2>
+    // }
 
     return (
         <>
-        <h1>Upcoming Events</h1>
-        <Segment style={{overflow: 'auto', maxHeight: 400 }}>
-        <div class="ui three stackable cards">
-            <Card style={{ backgroundColor: 'lightblue' }} class="ui fluid card">
-                <Card.Header style={{ backgroundColor: '', padding: '10px', marginTop: '10px' }} className='ui centered blue'>Event Name</Card.Header>
-                <Card.Content class="content">
-                    <p><strong>Sport:</strong></p>
-                    <p><strong>Description:</strong></p>
-                    <p><strong>Location:</strong></p>
-                </Card.Content>
-            </Card>
-        </div>
-        </Segment>
+            <h1>Upcoming Events</h1>
+            {eventData.map((eventListItem) => (
+                <Segment style={{ overflow: 'auto', maxHeight: 400 }}>
+                    <div class="ui three stackable cards">
+                        <Card style={{ backgroundColor: 'lightblue' }} class="ui fluid card">
+                            <Card.Header style={{ backgroundColor: '', padding: '10px', marginTop: '10px' }} className='ui centered blue'>{eventListItem.name}</Card.Header>
+                            <Card.Content class="content">
+                                <p><strong>{eventListItem.sport}</strong></p>
+                                <p><strong>{eventListItem.location}</strong></p>
+                                <p><strong>{eventListItem.date}</strong></p>
+                            </Card.Content>
+                        </Card>
+                    </div>
+                </Segment>
+))}
         </>
     )
-
 }
 
 export default EventList;

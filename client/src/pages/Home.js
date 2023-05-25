@@ -58,7 +58,7 @@ const Home = () => {
                 All Today's Events
                 <EventList />
             </div>
-        </div>
+
         </section>
     )
 

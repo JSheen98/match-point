@@ -49,7 +49,7 @@ const EventForm = () => {
     const [create] = useMutation(ADD_EVENT)
 
     const handleDateChange = (date) => {
-        // console.log(date)
+        console.log(date)
         setFormInput({ ...formInput, date: date })
     }
     // console.log(formInput)

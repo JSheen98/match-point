@@ -134,7 +134,7 @@ const EventForm = () => {
                         selected={formInput.date} 
                         onChange={((date) => handleDateChange(date))}
                         showTimeSelect
-                        dateFormat="Pp"
+                        dateFormat="MMMM eeee d, yyyy h:mm aa"
                     />
                 </Form.Group>
         

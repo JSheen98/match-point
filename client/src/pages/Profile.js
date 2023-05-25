@@ -104,7 +104,7 @@ const ProfileContainer = () => {
                                         <Grid className='ui centered'>
                                             <GridRow >
                                                 <Button onClick={() => handleDeleteEvent(event._id)} className='ui red'>Delete</Button>
-                                                <Button className='ui yellow'>Update</Button>
+                                                {/* <Button className='ui yellow'>Update</Button> */}
                                             </GridRow>
                                         </Grid>
                                     </Card.Content>

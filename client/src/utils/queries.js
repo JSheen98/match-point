@@ -60,6 +60,7 @@ export const QUERY_EVENT = gql`
         sport
         location
         date
+        eventCreator
     }
 }
 `

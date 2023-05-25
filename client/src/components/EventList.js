@@ -52,6 +52,7 @@ function EventList() {
                                 <p><strong>Sport: {EventListItem.sport}</strong></p>
                                 <p><strong>Location: {EventListItem.location}</strong></p>
                                 <p><strong>Date: {new Date(EventListItem.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</strong></p>
+                                <p><strong>Created by: {EventListItem.eventCreator}</strong></p>
                             </Card.Content>
                         </Card>
                     </div>

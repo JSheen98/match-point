@@ -4,9 +4,6 @@ import { useMutation } from '@apollo/client'
 import { ADD_USER } from '../utils/mutations'
 import Auth from '../utils/auth'
 
-// TODO: set up validation, error messaging?
-// make username, email, password required, phone number shouldn't be
-
 const styles = {
     container: {
         margin: '25px'
@@ -15,6 +12,8 @@ const styles = {
 
 const SignupForm = () => {
     const [formInput, setFormInput] = useState({ username: '', email: '', password: '', phoneNumber: ''})
+    const [errors, setErrors] = useState({})
+
     const [addUser, { error, data }] = useMutation(ADD_USER)
 
     const handleChange = (e) => {
@@ -24,6 +23,20 @@ const SignupForm = () => {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault()
+
+        // Eamil/Password validation
+        const validationErrors = {}
+        if (formInput.password.length < 5) {
+            validationErrors.password = 'Password must be at least 5 characters long'
+        }
+        if (!isValidEmail(formInput.email)) {
+            validationErrors.email = 'Invalid email format'
+        }
+
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors)
+            return
+        }
 
         try {
             const { data } = await addUser({
@@ -43,50 +56,59 @@ const SignupForm = () => {
         })
     }
 
+    const isValidEmail = (email) => {
+        // Returned message
+        return email.includes('@')
+    }
+
     return (
         <div style={styles.container}>
-        <Form onSubmit={handleFormSubmit}>
-            <Form.Field>
-                <Form.Input
-                    value={formInput.username}
-                    onChange={handleChange}
-                    type='text'
-                    name='username'
-                    placeholder='e.g. newUser1'
-                    label="Username"
-                />
-            </Form.Field>
-            <Form.Field>
-                <Form.Input
-                    value={formInput.email}
-                    onChange={handleChange}
-                    type='email'
-                    name='email'
-                    placeholder='example@email.com'
-                    label="Email"
-                />
-            </Form.Field>
-            <Form.Field>
-                <Form.Input
-                    value={formInput.password}
-                    onChange={handleChange}
-                    type='password'
-                    name='password'
-                    label="Password"
-                />
-            </Form.Field>
-            <Form.Field>
-                <Form.Input
-                    value={formInput.phoneNumber}
-                    onChange={handleChange}
-                    type='number'
-                    name='phoneNumber'
-                    placeholder='1-800-555-5555'
-                    label="Phone Number"
-                />
-            </Form.Field>
-            <Button disabled={!(formInput.username && formInput.email && formInput.password)} type='submit'>Submit</Button>
-        </Form>
+            <Form onSubmit={handleFormSubmit}>
+                <Form.Field>
+                    <Form.Input
+                        value={formInput.username}
+                        onChange={handleChange}
+                        type='text'
+                        name='username'
+                        placeholder='e.g. newUser1'
+                        label="Username"
+                    />
+                </Form.Field>
+                <Form.Field>
+                    <Form.Input
+                        value={formInput.email}
+                        onChange={handleChange}
+                        type='email'
+                        name='email'
+                        placeholder='example@email.com'
+                        label="Email"
+                        error={errors.email} 
+                    />
+                    {errors.email && <p>{errors.email}</p>}
+                </Form.Field>
+                <Form.Field>
+                    <Form.Input
+                        value={formInput.password}
+                        onChange={handleChange}
+                        type='password'
+                        name='password'
+                        label="Password"
+                        error={errors.password} 
+                    />
+                    {errors.password && <p>{errors.password}</p>}
+                </Form.Field>
+                <Form.Field>
+                    <Form.Input
+                        value={formInput.phoneNumber}
+                        onChange={handleChange}
+                        type='number'
+                        name='phoneNumber'
+                        placeholder='1-800-555-5555'
+                        label="Phone Number"
+                    />
+                </Form.Field>
+                <Button disabled={!(formInput.username && formInput.email && formInput.password)} type='submit'>Submit</Button>
+            </Form>
         </div>
     )
 }

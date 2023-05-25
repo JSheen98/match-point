@@ -21,6 +21,7 @@ import LoginForm from './components/LoginForm'
 import SignupForm from './components/SignupForm'
 // import EventList from './components/EventList';
 import TeamForm from "./components/TeamForm";
+import EventForm from "./components/EventForm";
 
 const httpLink = createHttpLink({  
   uri: '/graphql'
@@ -64,7 +65,8 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/signup" element={<SignupForm />} />
-            <Route path="/Team" element={<TeamForm />} />
+            <Route path="/team" element={<TeamForm />} />
+            <Route path="/event" element={<EventForm />} />
           </Routes>
         </Router>
         {/* <EventList /> */}

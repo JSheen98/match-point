@@ -20,10 +20,10 @@ const Home = () => {
         navigate('/events')
     };
     const navigateToAddEvent= () => {
-        navigate('/eventform')
+        navigate('/event')
     };
     const navigateToAddTeam= () => {
-        navigate('/teamform')
+        navigate('/team')
     };
 
 

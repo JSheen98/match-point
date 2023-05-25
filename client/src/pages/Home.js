@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import './css/styles.css';
 import Auth from '../utils/auth';
 import EventList from '../components/EventList';
@@ -16,20 +15,21 @@ const styles = {
 
 const Home = () => {
     //Navigations
-    const navigate = useNavigate()
 
     const navigateToEventsPage = () => {
-        navigate('/events')
+        window.location.href= '/events'
     };
     const navigateToAddEvent = () => {
         Auth.loggedIn() ?
-        (navigate('/event')) : 
-        (navigate('/login'))
+
+        ( window.location.href= '/event') : 
+        ( window.location.href= '/login')
+
     };
     const navigateToAddTeam = () => {
         Auth.loggedIn() ?
-        (navigate('/Team')) : 
-        (navigate('/login'))
+        ( window.location.href= '/Team') : 
+        ( window.location.href= '/login')
     };
     
 

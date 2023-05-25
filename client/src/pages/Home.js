@@ -23,7 +23,7 @@ const Home = () => {
     };
     const navigateToAddEvent = () => {
         Auth.loggedIn() ?
-        (navigate('/events')) : 
+        (navigate('/event')) : 
         (navigate('/login'))
     };
     const navigateToAddTeam = () => {

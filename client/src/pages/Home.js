@@ -25,7 +25,7 @@ const Home = () => {
     const navigateToAddTeam= () => {
         navigate('/team')
     };
-
+    
 
     return (
         <section>

@@ -2,6 +2,7 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt')
 const dateFormat = require('../utils/dateFormat')
 
+// User model
 const userSchema = new Schema(
     {
         username: {
@@ -14,6 +15,7 @@ const userSchema = new Schema(
             type: String,
             unique: true,
             required: true,
+            // regex validation
             match: [/.+\@.+\..+/]
         },
         password: {
@@ -24,15 +26,18 @@ const userSchema = new Schema(
         phoneNumber: {
             type: Number
         },
+        // date account is created with formatting
         createdAt: {
             type: Date, 
             default: Date.now,
             get: (timestamp) => dateFormat(timestamp)
         },
+        // Event model reference array
         events: [{
             type: Schema.Types.ObjectId,
             ref: 'Events',
         }],
+        // Tean model reference array
         teams: [{
             type: Schema.Types.ObjectId,
             ref: 'Team',

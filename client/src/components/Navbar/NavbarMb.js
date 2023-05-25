@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { Menu, Sidebar } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import Logo from '../../pages/images/logo.png';
+import Auth from '../../utils/auth'
 
+// Overlay component for open hamburger menu
 function Overlay() {
   return (
     <div style={{
@@ -19,31 +21,41 @@ const style = {
   }
 }
 
+// Hamburger menu compnent
 function HamIcon() {
   return (<i className="big bars icon inverted" />)
 }
 
+// X button for open hamburger menu component
 function CloseIcon() {
   return (<i className="big close red icon" />)
 }
 
-function NavbarMb({renderLinks}) {
+// Hamburger menu links and functionality
+function NavbarMb({ renderLinks }) {
   const [visible, setVisible] = useState(false)
   const [icon, setIcon] = useState(HamIcon)
   const [activeItem, setactiveItem] = useState("home")
   const handleItemClick = (e, { name }) => setactiveItem(name)
+
+  // hides the hamburger menu
   const hideSidebar = () => {
     setIcon(HamIcon)
     setVisible(false)
   }
+
+  // shows the hamburger menu
   const showSidebar = () => {
     setIcon(CloseIcon)
     setVisible(true)
   }
+
+  // Toggles hamburger
   const toggleSidebar = () => {
     visible ? hideSidebar() : showSidebar()
   }
 
+  // HTML with above functions
   return (
     <>
       {visible && <Overlay />}
@@ -69,7 +81,7 @@ function NavbarMb({renderLinks}) {
         visible={visible}
         width='thin'
       >
-        {/* TODO: Add links to hamburger menu as needed */}
+        {/* Logo and home link */}
         <Menu.Item>
           <img style={style.size} src={Logo} alt='logo' />
         </Menu.Item>
@@ -80,37 +92,35 @@ function NavbarMb({renderLinks}) {
           active={activeItem === 'home'}
           onClick={handleItemClick}
         />
-        <Menu.Item
-          as={Link}
-          to="/profile"
-          name='profile'
-          active={activeItem === 'profile'}
-          onClick={handleItemClick}
-        />
-        <Menu.Item
-          as={Link}
-          to= "/calendar"
-          name='calendar'
-          active={activeItem === 'calendar'}
-          onClick={handleItemClick}
-          position="right"
-        />
-        <Menu.Item
-          as={Link}
-          to="/login"
-          name='login'
-          active={activeItem === 'login'}
-          onClick={handleItemClick}
-          position="right"
-        />
-        {/* Add link to sign up */}
-        <Menu.Item
-          as={Link}
-          to="/signup"
-          name='sign_up'
-          active={activeItem === 'sign_up'}
-          onClick={handleItemClick}
-        />
+        {/* If user is logged in, display profile and logout buttons in hamburger menu */}
+        {Auth.loggedIn() ? (
+          <><Menu.Item
+            as={Link}
+            to="/profile"
+            name='profile'
+            active={activeItem === 'profile'}
+            onClick={handleItemClick} />
+            <Menu.Item
+              name='logout'
+              onClick={Auth.logout}
+            >
+              Logout
+            </Menu.Item></>
+        ) : (
+          // else, display login and signup in hamburger menu
+          <><Menu.Item
+            as={Link}
+            to="/login"
+            name='login'
+            active={activeItem === 'login'}
+            onClick={handleItemClick}
+            position="right" /><Menu.Item
+              as={Link}
+              to="/signup"
+              name='sign_up'
+              active={activeItem === 'sign_up'}
+              onClick={handleItemClick} /></>
+        )}
       </Sidebar>
     </>
   )

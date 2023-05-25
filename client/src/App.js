@@ -44,6 +44,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 })
 
+// Base of the app with all routes and pages/components
 function App() {
   return (
     <ApolloProvider client={client}>

@@ -1,5 +1,6 @@
 const { gql } = require('apollo-server-express')
 
+// Backend schema for models
 const typeDefs = gql`
 type User {
     _id: ID!

@@ -1,12 +1,12 @@
 import React from 'react'
 import { useQuery, useMutation } from '@apollo/client'
 import { QUERY_LOGGED_IN } from '../utils/queries'
-// import { REMOVE_EVENT } from '../utils/mutations' //TODO: 
 import Auth from '../utils/auth'
 import { Card, Grid, GridRow, Button } from 'semantic-ui-react'
 import { DELETE_EVENT, DELETE_TEAM } from '../utils/mutations'
 import { useParams } from "react-router-dom"
 
+// Inline styles
 const styles = {
     profileCard: {
         marginTop: '30px',
@@ -36,6 +36,7 @@ const styles = {
     }
 }
 
+// Profile container component
 const ProfileContainer = () => {
     const { loading, data } = useQuery(QUERY_LOGGED_IN)
     const userData = data?.me || {}
@@ -43,7 +44,9 @@ const ProfileContainer = () => {
     const [deleteTeam, { deleteTeamError }] = useMutation(DELETE_TEAM)
     const { id } = useParams()
 
+    // handles deletion of user's teams
     const handleDeleteTeam = async (teamId) => {
+        // Auth verification
         const token = Auth.loggedIn() ? Auth.getToken() : null
 
         if (!token) {
@@ -51,6 +54,7 @@ const ProfileContainer = () => {
         }
 
         try {
+            // deletes the team by id, and removes the username from the team
             const { data } = await deleteTeam({
                 variables: { 
                     teamId,
@@ -62,7 +66,9 @@ const ProfileContainer = () => {
         }
     }
 
+    // handles deletion of user's events
     const handleDeleteEvent = async (eventId) => {
+        // auth verification
         const token = Auth.loggedIn() ? Auth.getToken() : null
 
         if (!token) {
@@ -70,6 +76,7 @@ const ProfileContainer = () => {
         }
 
         try {
+            // deletes the event by id, and removes the username from the event
             const { data } = await deleteEvent({
                 variables: {
                     eventId, 
@@ -82,10 +89,12 @@ const ProfileContainer = () => {
         }
     }
 
+    // If the profile page is loading, we display this <h2>
     if (loading) {
         return <h2 style={styles.card}>Loading Profile...</h2>
     }
 
+    // HTML with above functionality
     return (
         <div>
             <div className='ui centered card' style={styles.profileCard}>
@@ -114,7 +123,6 @@ const ProfileContainer = () => {
                                         <Grid className='ui centered'>
                                             <GridRow >
                                                 <Button onClick={() => handleDeleteEvent(event._id)} className='ui red'>Delete</Button>
-                                                {/* <Button className='ui yellow'>Update</Button> */}
                                             </GridRow>
                                         </Grid>
                                     </Card.Content>
@@ -139,7 +147,6 @@ const ProfileContainer = () => {
                                         <Grid className='ui centered'>
                                             <GridRow >
                                                 <Button onClick={() => handleDeleteTeam(team._id)} className='ui red'>Delete</Button>
-                                                {/* <Button className='ui yellow'>Update</Button> */}
                                             </GridRow>
                                         </Grid>
                                     </Card.Content>

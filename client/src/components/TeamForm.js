@@ -124,7 +124,6 @@ const TeamForm = () => {
                 />
             </Form.Field>
             <Button className='ui black' onClick={profila} style={styles.bord} disabled={!Object.values(formInput).every(value => value)}>Submit</Button>
-=======
             <Form onSubmit={handleFormSubmit}>
                 <Form.Field>
                     <Form.Input
@@ -158,8 +157,6 @@ const TeamForm = () => {
                     />
                 </Form.Field>
                 <Button className='ui black' style={styles.bord} disabled={!Object.values(formInput).every(value => value)}>Submit</Button>
->>>>>>> 3680d421e0f72dd22d5511bb341087c0e8c8af76
-
             </Form>
         </div>
     )

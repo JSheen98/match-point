@@ -1,6 +1,7 @@
-import { useState } from 'react'
-import { Menu, Sidebar } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { useState } from 'react';
+import { Menu, Sidebar } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import Logo from '../../pages/images/logo.png';
 import Auth from '../../utils/auth'
 
 // Overlay component for open hamburger menu
@@ -13,6 +14,11 @@ function Overlay() {
       width: "100%",
     }} />
   )
+}
+const style = {
+  size: {
+    width: '150px'
+  }
 }
 
 // Hamburger menu compnent
@@ -58,6 +64,9 @@ function NavbarMb({ renderLinks }) {
         borderless
         attached
       >
+        <Menu.Item position='left'>
+          <img style={style.size} src={Logo} alt='logo' />
+        </Menu.Item>
         <Menu.Menu position='right'>
           <Menu.Item onClick={toggleSidebar}>
             {icon}
@@ -72,6 +81,10 @@ function NavbarMb({ renderLinks }) {
         visible={visible}
         width='thin'
       >
+        {/* Logo and home link */}
+        <Menu.Item>
+          <img style={style.size} src={Logo} alt='logo' />
+        </Menu.Item>
         <Menu.Item
           as={Link}
           to="/"

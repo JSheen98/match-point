@@ -15,6 +15,11 @@ const styles = {
     },
     black: {
         color: 'black'
+    },
+    bord: {
+        borderStyle: 'solid',
+        borderWidth: '5px',
+        borderColor: 'black',
     }
 }
 
@@ -63,6 +68,7 @@ const LoginForm = () => {
                     <Form.Input
                         value={formInput.email}
                         onChange={handleChange}
+                        style={styles.bord}
                         type='email'
                         name='email'
                         placeholder='example@email.com'
@@ -73,6 +79,7 @@ const LoginForm = () => {
                     <Form.Input
                         value={formInput.password}
                         onChange={handleChange}
+                        style={styles.bord}
                         type='password'
                         name='password'
                         label="Password"
@@ -80,7 +87,7 @@ const LoginForm = () => {
                     />
                 </Form.Field>
                 {error && <p>{error.message}</p>}
-                <Button disabled={!(formInput.email && formInput.password)} type='submit'>Submit</Button>
+                <Button className='ui black' disabled={!(formInput.email && formInput.password)} style={styles.bord} type='submit'>Submit</Button>
             </Form>
         </div>
     )

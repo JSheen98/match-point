@@ -10,7 +10,7 @@ const styles = {
         borderStyle: 'solid',
         borderWidth: '5px',
         borderColor: 'black',
-    }
+    },
 }
 
 const Events = () => {
@@ -44,31 +44,31 @@ const Events = () => {
             <div className="column event">
                 <div className='SportLabel' style={styles.lime}>
                     <h1>Basketball</h1>
-                    <button onClick={navigateToBball} style={styles.black}   className='ui button massive'>🏀</button>
+                    <button onClick={navigateToBball}   className='ui black button massive'>🏀</button>
                 </div>
             </div>
             <div className="column event">
                 <div className='SportLabel' style={styles.lime}>
                     <h1>Baseball</h1>
-                    <button onClick={navigateToBaseball} style={styles.black}   className='ui button massive'>⚾</button>
+                    <button onClick={navigateToBaseball}   className='ui black button massive'>⚾</button>
                 </div>
             </div>
             <div className="column event">
                 <div className='SportLabel' style={styles.lime}>
                     <h1>Soccer/Football</h1>
-                    <button onClick={navigateToSoccer} style={styles.black}   className='ui button massive'>⚽🥅</button>
+                    <button onClick={navigateToSoccer}   className='ui black button massive'>⚽🥅</button>
                 </div>
             </div>
             <div className="column event">
                 <div className='SportLabel' style={styles.lime}>
                     <h1>American Football</h1>
-                    <button onClick={navigateToFootball} style={styles.black}  className='ui button massive'>🏈</button>
+                    <button onClick={navigateToFootball}  className='ui black button massive'>🏈</button>
                 </div>
             </div>
             <div className="column event">
                 <div className='SportLabel' style={styles.lime}>
                     <h1>Other</h1>
-                    <button onClick={navigateToOther} style={styles.black} className='ui button massive'>⛳</button>
+                    <button onClick={navigateToOther} className='ui black button massive'>⛳</button>
                 </div>
             </div>
 

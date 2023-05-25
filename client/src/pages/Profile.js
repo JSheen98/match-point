@@ -10,20 +10,29 @@ import { useParams } from "react-router-dom"
 const styles = {
     profileCard: {
         marginTop: '30px',
-        marginBottom: '50'
+        marginBottom: '50',
+        borderStyle: 'solid',
+        borderWidth: '5px',
+        borderColor: 'black',
     },
     eventCard: {
-        margin: '10px'
+        margin: '10px',
     },
     eventContainer: {
         marginTop: '20px',
-        borderRadius: '4px'
+        borderRadius: '4px',
     },
     button: {
         marginBottom: '5px'
     },
     text: {
         color: 'rgb(65, 226, 173)'
+    },
+    bord: {
+        borderStyle: 'solid',
+        borderWidth: '5px',
+        borderColor: 'black',
+        margin: '10px'
     }
 }
 
@@ -74,6 +83,7 @@ const ProfileContainer = () => {
                     eventCreator: Auth.getProfile().data.username
                 }
             })
+            window.location.href='/profile'
         } catch (err) {
             console.error(err)
         }
@@ -101,10 +111,10 @@ const ProfileContainer = () => {
             <div className='ui container' style={styles.eventContainer}>
                 <h2 style={styles.text}  className='ui centered header'>Your Events</h2>
                 <Grid style={styles.eventCard}>
-                    <GridRow className='centered'>
+                    <GridRow  className='centered'>
                         {userData.events.map((event) => {
                             return (
-                                <Card style={styles.eventCard}>
+                                <Card style={styles.bord}>
                                     <Card.Content>
                                         <Card.Header className='ui centered'>{event.name}</Card.Header>
                                         <p><strong>Location:</strong> {event.location}</p>
@@ -129,7 +139,7 @@ const ProfileContainer = () => {
                     <GridRow className='centered'>
                         {userData.teams.map((team) => {
                             return (
-                                <Card style={styles.eventCard}>
+                                <Card style={styles.bord}>
                                     <Card.Content>
                                         <Card.Header className='ui centered'>{team.name}</Card.Header>
                                         <p><strong>Sport:</strong> {team.sport}</p>

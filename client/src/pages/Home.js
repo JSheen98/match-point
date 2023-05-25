@@ -31,7 +31,7 @@ const Home = () => {
         (navigate('/Team')) : 
         (navigate('/login'))
     };
-
+    
 
     return (
         <section>

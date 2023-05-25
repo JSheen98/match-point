@@ -1,6 +1,7 @@
 import React from 'react';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './css/styles.css';
+import Auth from '../utils/auth';
 import EventList from '../components/EventList';
 
 
@@ -14,39 +15,45 @@ const styles = {
 }
 
 const Home = () => {
-//Navigations
-    const navigate = useNavigate();
+    //Navigations
+    const navigate = useNavigate()
 
-    const navigateToEventsPage= () => {
+    const navigateToEventsPage = () => {
         navigate('/events')
     };
-    const navigateToAddEvent= () => {
-        navigate('/event')
+    const navigateToAddEvent = () => {
+        Auth.loggedIn() ?
+        (navigate('/events')) : 
+        (navigate('/login'))
     };
-    const navigateToAddTeam= () => {
-        navigate('/team')
+    const navigateToAddTeam = () => {
+        Auth.loggedIn() ?
+        (navigate('/Team')) : 
+        (navigate('/login'))
     };
 
 
     return (
         <section>
-        <div className="ui two column centered grid events">
-            <div className="four column centered row eventers ">
-                <div className="column eventers">
-                    <button  onClick={navigateToEventsPage} style={styles.lime} className="ui button massive">
-                        EVENT PAGES
-                    </button>
-                </div>
-                <div className="column eventers">
-                    
-                <div class="ui buttons">
-  <button onClick={navigateToAddEvent} style={styles.lime} className="ui button massive">ADD EVENT</button>
-  <div class=" or ore" data-text="or"></div>
-  <button onClick={navigateToAddTeam} style={styles.lime} className="ui button  massive">ADD TEAM</button>
-</div>
-                   
+            <div className="ui two column centered grid events">
+                <div className="four column centered row eventers ">
+                    <div className="column eventers">
+                        <button onClick={navigateToEventsPage} style={styles.lime} className="ui button massive">
+                            EVENT PAGES
+                        </button>
+                    </div>
+                    <div className="column eventers">
+
+                        <div class="ui buttons">
+                            <button onClick={navigateToAddEvent} style={styles.lime} className="ui button massive">ADD EVENT</button>
+                            <div class=" or ore" data-text="or"></div>
+                            <button onClick={navigateToAddTeam} style={styles.lime} className="ui button  massive">ADD TEAM</button>
+                        </div>
+
+                    </div>
                 </div>
             </div>
+
             <div className="column ">
                 All Today's Events
                 <EventList />

@@ -3,7 +3,7 @@ import { useMediaQuery } from 'react-responsive'
 import NavbarMb from "./NavbarMb"
 import NavbarLg from "./NavbarLg"
 
-
+// Navbar component
 export default function Navbar() {
   
   const none =useMediaQuery({ query: "(max-width:576px)" }) 

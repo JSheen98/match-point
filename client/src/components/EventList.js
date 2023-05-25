@@ -3,6 +3,7 @@ import { useQuery, useMutation } from '@apollo/client'
 import { Card, Segment } from 'semantic-ui-react';
 import { QUERY_EVENT } from '../utils/queries';
 
+// Event List component
 function EventList() {
     const [event, setEvent] = useState([]);
     const { loading, data } = useQuery(QUERY_EVENT)

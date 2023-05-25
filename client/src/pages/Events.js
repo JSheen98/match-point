@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import 'semantic-ui-react';
 import './css/styles.css';
 
+// Inline styles
 const styles = {
     lime: {
         backgroundColor: 'rgb(65, 226, 173)',
@@ -36,7 +37,7 @@ const Events = () => {
         navigate('/others')
     };
 
-
+    // HTML with above functionality
     return (
         <div className="ui stackable three column grid events">
 

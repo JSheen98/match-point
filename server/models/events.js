@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 
+// event model
 const eventSchema = new Schema(
     {
         name: {
@@ -26,6 +27,7 @@ const eventSchema = new Schema(
             unique: false,
             trim: true
         },
+        // Puts the event creators username here when a new one is created
         eventCreator: {
             type: String,
             required: true,

@@ -3,7 +3,7 @@ import './css/styles.css';
 import Auth from '../utils/auth';
 import EventList from '../components/EventList';
 
-
+// Inline styles
 const styles = {
     lime: {
         backgroundColor: 'rgb(65, 226, 173)',
@@ -32,7 +32,7 @@ const Home = () => {
         ( window.location.href= '/login')
     };
     
-
+    // JSX with above navigation functions
     return (
         <section>
             <div className="ui two column centered grid events">

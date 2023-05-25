@@ -21,15 +21,17 @@ const Home = () => {
     };
     const navigateToAddEvent = () => {
         Auth.loggedIn() ?
+
         ( window.location.href= '/event') : 
         ( window.location.href= '/login')
+
     };
     const navigateToAddTeam = () => {
         Auth.loggedIn() ?
         ( window.location.href= '/Team') : 
         ( window.location.href= '/login')
     };
-
+    
 
     return (
         <section>

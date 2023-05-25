@@ -55,6 +55,10 @@ const TeamForm = () => {
         setFormInput({ ...formInput, sport: e.target.textContent })
     }
 
+    const profila = () => {
+        window.location.href= '/profile'
+    }
+
     const handleFormSubmit = async (e) => {
         e.preventDefault()
 
@@ -114,7 +118,7 @@ const TeamForm = () => {
                     label="Description"
                 />
             </Form.Field>
-            <Button className='ui black' style={styles.bord} disabled={!Object.values(formInput).every(value => value)}>Submit</Button>
+            <Button className='ui black' onClick={profila} style={styles.bord} disabled={!Object.values(formInput).every(value => value)}>Submit</Button>
 
         </Form>
         </div>

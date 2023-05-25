@@ -10,28 +10,43 @@ const styles = {
         borderStyle: 'solid',
         borderWidth: '5px',
         borderColor: 'black',
-    }
+    },
+    black: {
+        color: 'black'
+    },
+    limes: {
+        backgroundColor: 'rgb(65, 226, 173)',
+        borderStyle: 'solid',
+        borderWidth: '5px',
+        borderColor: 'black',
+        width: 'fit-content',
+        padding: '5px',
+        marginBottom: '15px'
+    }, center: {
+        display: 'flex',
+        justifyContent: 'center'
+    },
 }
 
 const Home = () => {
     //Navigations
 
     const navigateToEventsPage = () => {
-        window.location.href= '/events'
+        window.location.href = '/events'
     };
     const navigateToAddEvent = () => {
         Auth.loggedIn() ?
 
-        ( window.location.href= '/event') : 
-        ( window.location.href= '/login')
+            (window.location.href = '/event') :
+            (window.location.href = '/login')
 
     };
     const navigateToAddTeam = () => {
         Auth.loggedIn() ?
-        ( window.location.href= '/Team') : 
-        ( window.location.href= '/login')
+            (window.location.href = '/Team') :
+            (window.location.href = '/login')
     };
-    
+
 
     return (
         <section>
@@ -46,7 +61,7 @@ const Home = () => {
 
                         <div class="ui buttons">
                             <button onClick={navigateToAddEvent} style={styles.lime} className="ui button massive">ADD EVENT</button>
-                            <div class=" or ore" data-text="or"></div>
+                            <div className=" ore or" data-text="or"></div>
                             <button onClick={navigateToAddTeam} style={styles.lime} className="ui button  massive">ADD TEAM</button>
                         </div>
 
@@ -54,9 +69,13 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className="column ">
-                All Today's Events
+            <div  className="column ">
+                <div style={styles.center}>
+                <h1 style={styles.limes}>Todays Events!</h1>
+                </div>
+                <div > 
                 <EventList />
+                </div>
             </div>
 
         </section>

@@ -4,12 +4,50 @@ import 'semantic-ui-react'
 import '../css/styles.css'
 import { Card, Segment } from 'semantic-ui-react';
 import { QUERY_EVENT } from '../../utils/queries';
+import Auth from '../../utils/auth';
+
+
+const styles = {
+    lime: {
+        backgroundColor: 'rgb(65, 226, 173)',
+        borderStyle: 'solid',
+        borderWidth: '5px',
+        borderColor: 'black',
+        margin: '25px',
+    },
+    black: {
+        color: 'rgb(65, 226, 173)',
+        backgroundColor: 'black'
+    },
+    bord: {
+        borderStyle: 'solid',
+        borderWidth: '5px',
+        borderColor: 'black',
+       margin: '5px'
+    },
+    cards: {
+        overflow: 'auto',
+        maxHeight: 400,
+        backgroundColor: 'rgb(65, 226, 173)',
+        display: 'flex',
+        justifyContent: 'center'
+
+    }
+}
 
 const Other = () => {
       
     const navigateToEvents = () => {
         window.location.href='/events'
      };
+
+     const navigateToAddEvent = () => {
+        Auth.loggedIn() ?
+
+        ( window.location.href= '/event') : 
+        ( window.location.href= '/login')
+
+    };
  
      const [event, setEvent] = useState([]);
      const { loading, data } = useQuery(QUERY_EVENT)
@@ -40,14 +78,14 @@ const Other = () => {
  
      return (
  
-         <div className="ui stackable one column grid menu center">
+         <div style={styles.lime}  className="ui stackable one column grid menu center">
              <h1 className=''>Other Sport Events</h1>
              <div></div>
-             <button className='ui left labeled icon button' onClick={navigateToEvents}> <i class="backward icon"></i>Back</button>
+             <button className='ui left labeled black icon button'  style={styles.bord} onClick={navigateToEvents}> <i class="backward icon"></i>Back</button>
    <div></div>
-   <button className='ui right labeled icon button' onclick="/"> <i className="forward icon"></i>New Event</button>
-             <div className="column ">
-                 <h1>Today</h1>
+   <button className='ui right labeled icon black button'  style={styles.bord} onClick={navigateToAddEvent}> <i className="forward icon"></i>New Event</button>
+             <div style={styles.black} className="column ">
+                 <h1>Today:</h1>
                  <div className="event">
                      
  
@@ -62,10 +100,10 @@ const Other = () => {
              }).map((EventListItem) => {
                  if(EventListItem.sport === 'Other' || EventListItem.sport === 'Underwater Basketweaving' || EventListItem.sport === 'Tennis' || EventListItem.sport === 'Softball' || EventListItem.sport === 'Rugbee' || EventListItem.sport === 'Racquetball' || EventListItem.sport === 'Pickleball' || EventListItem.sport === 'Lacrosse' || EventListItem.sport === 'Hockey' || EventListItem.sport === 'Boxing' || EventListItem.sport === 'Disc Golf' || EventListItem.sport === 'Volleyball' || EventListItem.sport === 'Bowling' || EventListItem.sport === 'Golf' ) {
                  return (
-                     <Segment key={EventListItem._id} style={{ overflow: 'auto', maxHeight: 400 }}>
-                     <div className="ui three stackable cards">
-                         <Card style={{ backgroundColor: 'lightblue' }} className="ui fluid card">
-                             <Card.Header style={{ padding: '10px', marginTop: '10px' }} className='ui centered blue'>{EventListItem.name}</Card.Header>
+                     <Segment key={EventListItem._id} style={{ overflow: 'auto', maxHeight: 400, backgroundColor: 'rgb(65, 226, 173)' }}>
+                     <div style={styles.cards} className="ui three stackable cards">
+                         <Card style={{ backgroundColor: 'white', color: 'black' }} className="ui fluid card">
+                             <Card.Header style={{ padding: '20px', backgroundColor: 'black' , color: 'rgb(65, 226, 173)' }} className='ui centered'>{EventListItem.name}</Card.Header>
                              <Card.Content className="content">
                                  <p><strong>Sport: {EventListItem.sport}</strong></p>
                                  <p><strong>Location: {EventListItem.location}</strong></p>
@@ -82,8 +120,8 @@ const Other = () => {
  
                  </div>
              </div>
-             <div className="column ">
-                 <h1>Upcoming </h1>
+             <div style={styles.black} className="column ">
+                 <h1>Upcoming: </h1>
                  <div className=" event">
      
  
@@ -97,10 +135,10 @@ const Other = () => {
              }).map((EventListItem) => {
                     if(EventListItem.sport === 'Other' || EventListItem.sport === 'Underwater Basketweaving' || EventListItem.sport === 'Tennis' || EventListItem.sport === 'Softball' || EventListItem.sport === 'Rugbee' || EventListItem.sport === 'Racquetball' || EventListItem.sport === 'Pickleball' || EventListItem.sport === 'Lacrosse' || EventListItem.sport === 'Hockey' || EventListItem.sport === 'Boxing' || EventListItem.sport === 'Disc Golf' || EventListItem.sport === 'Volleyball' || EventListItem.sport === 'Bowling' || EventListItem.sport === 'Golf') {
                  return (
-                     <Segment key={EventListItem._id} style={{ overflow: 'auto', maxHeight: 400 }}>
-                     <div className="ui three stackable cards">
-                         <Card style={{ backgroundColor: 'lightblue' }} className="ui fluid card">
-                             <Card.Header style={{ padding: '10px', marginTop: '10px' }} className='ui centered blue'>{EventListItem.name}</Card.Header>
+                     <Segment key={EventListItem._id} style={{ overflow: 'auto', maxHeight: 400,  backgroundColor: 'rgb(65, 226, 173)' }}>
+                     <div style={styles.cards} className="ui three stackable cards">
+                         <Card style={{ backgroundColor: 'white', color: 'black' }} className="ui fluid card">
+                             <Card.Header style={{ padding: '20px', backgroundColor: 'black' , color: 'rgb(65, 226, 173)' }} className='ui centered '>{EventListItem.name}</Card.Header>
                              <Card.Content className="content">
                                  <p><strong>Sport: {EventListItem.sport}</strong></p>
                                  <p><strong>Location: {EventListItem.location}</strong></p>

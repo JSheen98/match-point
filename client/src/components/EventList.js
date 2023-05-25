@@ -3,6 +3,36 @@ import { useQuery, useMutation } from '@apollo/client'
 import { Card, Segment } from 'semantic-ui-react';
 import { QUERY_EVENT } from '../utils/queries';
 
+
+const styles = {
+    lime: {
+        backgroundColor: 'rgb(65, 226, 173)',
+        borderStyle: 'solid',
+        borderWidth: '5px',
+        borderColor: 'black',
+        margin: '25px',
+    },
+    black: {
+        color: 'black'
+    },
+    bord: {
+        borderStyle: 'solid',
+        borderWidth: '5px',
+        borderColor: 'black',
+       marginTop: '5px'
+    },
+    cards: {
+        overflow: 'auto',
+        maxHeight: 400,
+        backgroundColor: 'rgb(65, 226, 173)',
+        display: 'flex',
+        justifyContent: 'center'
+
+    },
+
+}
+
+
 function EventList() {
     const [event, setEvent] = useState([]);
     const { loading, data } = useQuery(QUERY_EVENT)
@@ -43,10 +73,10 @@ function EventList() {
             })
             .map((EventListItem) => {
                 return (
-                    <Segment key={EventListItem._id} style={{ overflow: 'auto', maxHeight: 400 }}>
-                    <div className="ui three stackable cards">
-                        <Card style={{ backgroundColor: 'lightblue' }} className="ui fluid card">
-                            <Card.Header style={{ padding: '10px', marginTop: '10px' }} className='ui centered blue'>{EventListItem.name}</Card.Header>
+                    <Segment key={EventListItem._id} style={{ overflow: 'auto', maxHeight: 400, backgroundColor:'rgb(65, 226, 173)', }}>
+                    <div style={styles.cards} className="ui three stackable cards">
+                        <Card style={{ backgroundColor: 'white', color: 'black' }} className="ui fluid card">
+                            <Card.Header style={{ padding: '20px', backgroundColor: 'black' , color: 'rgb(65, 226, 173)' }} className='ui centered'>{EventListItem.name}</Card.Header>
                             <Card.Content className="content">
                                 <p><strong>Sport: {EventListItem.sport}</strong></p>
                                 <p><strong>Location: {EventListItem.location}</strong></p>

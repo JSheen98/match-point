@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Menu, Sidebar } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import Logo from '../../pages/images/logo.png';
 
 function Overlay() {
   return (
@@ -11,6 +12,11 @@ function Overlay() {
       width: "100%",
     }} />
   )
+}
+const style = {
+  size: {
+    width: '150px'
+  }
 }
 
 function HamIcon() {
@@ -46,6 +52,9 @@ function NavbarMb({renderLinks}) {
         borderless
         attached
       >
+        <Menu.Item position='left'>
+          <img style={style.size} src={Logo} alt='logo' />
+        </Menu.Item>
         <Menu.Menu position='right'>
           <Menu.Item onClick={toggleSidebar}>
             {icon}
@@ -61,6 +70,9 @@ function NavbarMb({renderLinks}) {
         width='thin'
       >
         {/* TODO: Add links to hamburger menu as needed */}
+        <Menu.Item>
+          <img style={style.size} src={Logo} alt='logo' />
+        </Menu.Item>
         <Menu.Item
           as={Link}
           to="/"

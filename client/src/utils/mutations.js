@@ -35,16 +35,18 @@ mutation addTeam($name: String!, $sport: String!, $description: String!) {
 
 export const DELETE_TEAM = gql`
     mutation deleteTeam($teamId: ID!) {
-        teamId(teamId: $teamId) {
+        deleteTeam(teamId: $teamId) {
             _id
         }
     }
 `
 
 export const ADD_EVENT = gql`
-    mutation addEvent($name: String!, $sport: String!, $location: String!, $date: String!) {
-        addEvent(name: $name, sport: $sport, location: $location, date: $date) {
+    mutation addEvent($name: String!, $sport: String!, $location: String!, $date: String!, $url: String) {
+        addEvent(name: $name, sport: $sport, location: $location, date: $date, url: $url) {
             _id
+            url
+            eventCreator
         }
     }
 `

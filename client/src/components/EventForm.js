@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 // import Select from 'react-select';
-import { Button, Form } from 'semantic-ui-react';
-import { useMutation } from '@apollo/client';
-import { ADD_EVENT } from '../utils/mutations';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { Button, Form } from 'semantic-ui-react'
+import { useMutation } from '@apollo/client'
+import { ADD_EVENT } from '../utils/mutations'
+import DatePicker from "react-datepicker"
+// import Auth from '../utils/auth'
+import "react-datepicker/dist/react-datepicker.css"
+import { useParams } from "react-router-dom"
+import Auth from '../utils/auth'
+
+// import DatePicker from 'react-date-picker';
+// import SemanticDatepicker from 'react-semantic-ui-datepickers';
+// import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
+
 
 
 // const styles = {
@@ -23,7 +31,7 @@ const options = [
     {value: 'Football', text: 'Football'},
     {value: 'Golf', text: 'Golf'},
     {value: 'Hockey', text: 'Hockey'},
-    {value: 'Lacross', text: 'Lacross'},
+    {value: 'Lacrosse', text: 'Lacrosse'},
     {value: 'Pickleball', text: 'Pickleball'},
     {value: 'Racquetball', text: 'Racquetball'},
     {value: 'Rugbee', text: 'Rugbee'},
@@ -36,7 +44,8 @@ const options = [
 ]
 
 const EventForm = () => {
-    const [formInput, setFormInput] = useState({name: '', sport: '', location: '', date: ''})
+    const { id } = useParams()
+    const [formInput, setFormInput] = useState({ name: '', sport: '', location: '', date: '', url: 'test' })
     const [create] = useMutation(ADD_EVENT)
 
     const handleDateChange = (date) => {
@@ -56,13 +65,14 @@ const EventForm = () => {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault()
-        console.log("submitting form")
-        console.log(formInput)
+
         try {
             const { data } = await create({
-                variables: { ...formInput }
+                variables: {
+                    ...formInput,
+                    eventCreator: Auth.getProfile().data.username
+                }
             })
-            // console.log(formInput)
             // Auth.login(data.create.token)
         } catch (err) {
             console.error(err)
@@ -77,6 +87,7 @@ const EventForm = () => {
     }
 
     return (
+
         <div 
         id="event-form"
         // style={styles.container}
@@ -101,7 +112,7 @@ const EventForm = () => {
                         name='sport'
                         // placeholder='e.g. Basketball'
                         label="Sport"
-                        // class="ui selection dropdown"
+                        // className="ui selection dropdown"
                         options={options}
                     />
                 {/* </Form.Field> */}

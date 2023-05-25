@@ -22,6 +22,9 @@ const styles = {
     button: {
         marginBottom: '5px'
     },
+    text: {
+        color: 'rgb(65, 226, 173)'
+    }
 }
 
 const ProfileContainer = () => {
@@ -77,7 +80,7 @@ const ProfileContainer = () => {
         <div>
             <div className='ui centered card' style={styles.profileCard}>
                 <Card.Content>
-                    <h1 className='ui blue header centered'>Profile</h1>
+                    <h1 style={styles.text}  className='ui header centered'>Profile</h1>
                     <p><strong>Username:</strong> {userData.username}</p>
                     <p><strong>Email:</strong> {userData.email}</p>
                     <p><strong>Phone Number:</strong> {userData.phoneNumber}</p>
@@ -87,7 +90,7 @@ const ProfileContainer = () => {
                 </Card.Content>
             </div>
             <div className='ui container' style={styles.eventContainer}>
-                <h2 className='ui centered blue header'>Your Events</h2>
+                <h2 style={styles.text}  className='ui centered header'>Your Events</h2>
                 <Grid style={styles.eventCard}>
                     <GridRow className='centered'>
                         {userData.events.map((event) => {
@@ -113,7 +116,7 @@ const ProfileContainer = () => {
             </div>
 
             <div className='ui container' style={styles.eventContainer}>
-                <h2 className='ui centered blue header'>Your Teams</h2>
+                <h2 style={styles.text} className='ui centered header'>Your Teams</h2>
                 <Grid style={styles.eventCard}>
                     <GridRow className='centered'>
                         {userData.teams.map((team) => {

@@ -8,7 +8,7 @@ import '../../pages/css/styles.css'
 
 const style = {
   size: {
-   width: '150px'
+    width: '150px'
   }
 }
 
@@ -27,30 +27,30 @@ export default function NavbarLg() {
           active={activeItem === 'Match Point'}
           onClick={handleItemClick}
         />
-          {/* team icon */}
-        <Menu.Item
+        {/* team icon */}
+        {/* <Menu.Item
           as={Link}
           to="/Team"
           name='Team'
-          active={activeItem ==='Team'}
+          active={activeItem === 'Team'}
           onClick={handleItemClick}
-        />
+        /> */}
         <Menu.Item
-        position="right">
-            <img style={style.size} src={Logo} alt='logo'/>
-            </Menu.Item>
+          position="right">
+          <img style={style.size} src={Logo} alt='logo' />
+        </Menu.Item>
         {Auth.loggedIn() ? (
           <>
             <Menu.Item
               as={Link}
               to="/profile"
               name='profile'
+              position="right"
               active={activeItem === 'profile'}
               onClick={handleItemClick} />
             <Menu.Item
               name='logout'
               onClick={Auth.logout}
-              position="right"
             >
               Logout
             </Menu.Item>

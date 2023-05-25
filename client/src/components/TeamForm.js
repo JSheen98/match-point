@@ -89,7 +89,6 @@ const TeamForm = () => {
     return (
         <div style={styles.lime} id='event-form'>
             <h1>New Team</h1>
-<<<<<<< HEAD
         <Form onSubmit={handleFormSubmit}>
             <Form.Field>
                 <Form.Input

@@ -7,8 +7,7 @@ import {
 } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Home from './pages/Home' 
-import Calendar from "./pages/Calendar";
+import Home from './pages/Home'
 import Events from './pages/Events'
 import Basketball from './pages/sports/basketball';
 import Soccer from './pages/sports/soccer';
@@ -19,7 +18,6 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from './pages/Profile'
 import LoginForm from './components/LoginForm'
 import SignupForm from './components/SignupForm'
-// import EventList from './components/EventList';
 import TeamForm from "./components/TeamForm";
 import EventForm from "./components/EventForm";
 
@@ -49,13 +47,11 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      {/* <Sidebar /> */}
       <div className="App">
         <Router>
         <Navbar />
           <Routes>
-            <Route path="/" element={<Home />} />
-            {/* <Route path="/calendar" element={<Calendar />} /> */}
+            <Route exact path="/" element={<Home />} />
             <Route path="/events" element={<Events />} />
             <Route path="/basketball" element={<Basketball />} />
             <Route path="/soccer" element={<Soccer />} />
@@ -69,7 +65,6 @@ function App() {
             <Route path="/event" element={<EventForm />} />
           </Routes>
         </Router>
-        {/* <EventList /> */}
       </div>
     
     </ApolloProvider>

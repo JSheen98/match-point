@@ -9,10 +9,7 @@ const styles = {
         borderStyle: 'solid',
         borderWidth: '5px',
         borderColor: 'black',
-    },
-black: {
-    backgroundColor: 'black'
-}
+    }
 }
 
 const Events = () => {

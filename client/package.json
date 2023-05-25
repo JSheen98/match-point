@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "graphql": "^15.4.0",
     "jwt-decode": "^2.2.0",
+    "mongoose": "^7.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-responsive": "^9.0.2",

@@ -100,7 +100,7 @@ const ProfileContainer = () => {
                                         <Card.Header className='ui centered'>{event.name}</Card.Header>
                                         <p><strong>Location:</strong> {event.location}</p>
                                         <p><strong>Sport:</strong> {event.sport}</p>
-                                        <p><strong>Date:</strong> {event.date}</p>
+                                        <p><strong>Date:</strong> {new Date(event.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                                         <Grid className='ui centered'>
                                             <GridRow >
                                                 <Button onClick={() => handleDeleteEvent(event._id)} className='ui red'>Delete</Button>

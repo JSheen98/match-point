@@ -4,10 +4,10 @@ import '../css/styles.css'
 import {useNavigate} from 'react-router-dom';
 
 const Soccer = () => {
-    const navigate = useNavigate();
+
 
     const navigateToEvents = () => {
-        navigate('/events')
+        window.location.href='/events'
     };
 
     return (

@@ -74,7 +74,7 @@ const Baseball = () => {
     }
 
     return (
-
+        //renders current day only
         <div style={styles.lime} className="ui stackable one column grid menu center">
             <h1 className=''>Baseball Events</h1>
             <div></div>

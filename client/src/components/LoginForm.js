@@ -4,8 +4,6 @@ import { useMutation } from '@apollo/client'
 import { LOGIN } from '../utils/mutations'
 import Auth from '../utils/auth'
 
-// TODO: set up validation, error messaging?
-
 const styles = {
     container: {
         margin: '25px'
@@ -60,9 +58,10 @@ const LoginForm = () => {
                         type='password'
                         name='password'
                         label="Password" 
-                    
+                        error={error ? 'Invalid email or password' : null}
                     />
                 </Form.Field>
+                {error && <p>{error.message}</p>}
                 <Button disabled={!(formInput.email && formInput.password)} type='submit'>Submit</Button>
             </Form>
         </div>

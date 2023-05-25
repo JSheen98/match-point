@@ -89,7 +89,6 @@ const TeamForm = () => {
     return (
         <div style={styles.lime} id='event-form'>
             <h1>New Team</h1>
-<<<<<<< HEAD
         <Form onSubmit={handleFormSubmit}>
             <Form.Field>
                 <Form.Input
@@ -125,41 +124,6 @@ const TeamForm = () => {
                 />
             </Form.Field>
             <Button className='ui black' onClick={profila} style={styles.bord} disabled={!Object.values(formInput).every(value => value)}>Submit</Button>
-=======
-            <Form onSubmit={handleFormSubmit}>
-                <Form.Field>
-                    <Form.Input
-                        value={formInput.name}
-                        onChange={handleChange}
-                        style={styles.bord}
-                        type='text'
-                        name='name'
-                        placeholder='Team name'
-                        label="Name"
-                    />
-                </Form.Field>
-                <Form.Field>
-                    <Form.Select
-                        value={formInput.sport}
-                        onChange={selectChange}
-                        style={styles.bord}
-                        name='sport'
-                        label="Sport"
-                        options={options}
-                    />
-                </Form.Field>
-                <Form.Field>
-                    <Form.TextArea
-                        value={formInput.description}
-                        onChange={handleChange}
-                        style={styles.bord}
-                        name='description'
-                        placeholder='Describe what level of competition you are looking for'
-                        label="Description"
-                    />
-                </Form.Field>
-                <Button className='ui black' style={styles.bord} disabled={!Object.values(formInput).every(value => value)}>Submit</Button>
->>>>>>> 3680d421e0f72dd22d5511bb341087c0e8c8af76
 
             </Form>
         </div>

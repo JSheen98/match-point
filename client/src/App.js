@@ -16,6 +16,7 @@ import Baseball from './pages/sports/baseball';
 import Football from './pages/sports/football';
 import Other from './pages/sports/other';
 import Navbar from "./components/Navbar/Navbar";
+import Home from './pages/Home';
 import Profile from './pages/Profile'
 import LoginForm from './components/LoginForm'
 import SignupForm from './components/SignupForm'

@@ -3,6 +3,15 @@ import React, { useState } from 'react';
 import { Menu, Segment } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth'
+import Logo from '../../pages/images/logo.png';
+import '../../pages/css/styles.css'
+
+const style = {
+  size: {
+   width: '150px'
+  }
+}
+
 
 export default function NavbarLg() {
   const [activeItem, setactiveItem] = useState("home")
@@ -14,7 +23,7 @@ export default function NavbarLg() {
         <Menu.Item
           as={Link}
           to="/"
-          name='Match Point'
+          name='Home'
           active={activeItem === 'Match Point'}
           onClick={handleItemClick}
         />
@@ -27,13 +36,9 @@ export default function NavbarLg() {
           onClick={handleItemClick}
         />
         <Menu.Item
-          as={Link}
-          to="/calendar"
-          name='calendar'
-          active={activeItem === 'calendar'}
-          onClick={handleItemClick}
-          position="right"
-        />
+        position="right">
+            <img style={style.size} src={Logo} alt='logo'/>
+            </Menu.Item>
         {Auth.loggedIn() ? (
           <>
             <Menu.Item

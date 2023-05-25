@@ -16,19 +16,19 @@ const EventList = () => {
     //     const newEvent = [item, ...event];
     //     console.log(newEvent);
 
-function EventList() {
-    const [event, setEvent] = useState([]);
+// function EventList() {
+//     const [event, setEvent] = useState([]);
 
-    const addEventItem = (item) => {
-        console.log(item);
-        if (!item.text) {
-            return;
-        }
-        const newEvent = [item, ...event];
-        console.log(newEvent);
+//     const addEventItem = (item) => {
+//         console.log(item);
+//         if (!item.text) {
+//             return;
+//         }
+//         const newEvent = [item, ...event];
+//         console.log(newEvent);
 
-        setEvent(newEvent);
-    };
+//         setEvent(newEvent);
+//     };
 
     // if (loading) {
     //     return <h2>Loading Profile...</h2>

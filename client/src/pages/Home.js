@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './css/styles.css';
 import Auth from '../utils/auth';
+import EventList from '../components/EventList';
 
 
 const styles = {
@@ -51,10 +52,13 @@ const Home = () => {
 
                     </div>
                 </div>
-                <div className="column ">
-                    All Today's Events
-                </div>
             </div>
+
+            <div className="column ">
+                All Today's Events
+                <EventList />
+            </div>
+        </div>
         </section>
     )
 

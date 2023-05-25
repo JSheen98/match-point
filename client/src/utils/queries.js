@@ -52,8 +52,8 @@ query Team($name: String!) {
 `;
 
 export const QUERY_EVENT = gql`
-query Events($name: String!){
-    Events(name: $name){
+{
+    events {
         _id
         name
         sport
@@ -61,4 +61,4 @@ query Events($name: String!){
         date
     }
 }
-`;
+`

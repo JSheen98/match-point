@@ -6,6 +6,27 @@ import Auth from '../utils/auth'
 
 // TODO: set up validation, maybe disable submit button until input is filled?
 
+const options = [
+    {value: 'Baseball', text: 'Baseball'},
+    {value: 'Basketball', text: 'Basketball'},
+    {value: 'Bowling', text: 'Bowling'},
+    {value: 'Boxing', text: 'Boxing'},
+    {value: 'Disc Golf', text: 'Disc Golf'},
+    {value: 'Football', text: 'Football'},
+    {value: 'Golf', text: 'Golf'},
+    {value: 'Hockey', text: 'Hockey'},
+    {value: 'Lacrosse', text: 'Lacrosse'},
+    {value: 'Pickleball', text: 'Pickleball'},
+    {value: 'Racquetball', text: 'Racquetball'},
+    {value: 'Rugbee', text: 'Rugbee'},
+    {value: 'Soccer', text: 'Soccer'},
+    {value: 'Softball', text: 'Softball'},
+    {value: 'Tennis', text: 'Tennis'},
+    {value: 'Volleyball', text: 'Volleyball'},
+    {value: 'Underwater Basketweaving', text: 'Underwater Basketweaving'},
+    {value: 'Other', text: 'Other'}
+]
+
 const TeamForm = () => {
     const [formInput, setFormInput] = useState({ name: '', sport: '', description: '' })
     const [addTeam, { error }] = useMutation(ADD_TEAM)
@@ -13,6 +34,10 @@ const TeamForm = () => {
     const handleChange = (e) => {
         const { name, value } = e.target
         setFormInput({ ...formInput, [name]: value })
+    }
+
+    const selectChange = (e) => {
+        setFormInput({ ...formInput, sport: e.target.textContent })
     }
 
     const handleFormSubmit = async (e) => {
@@ -38,6 +63,7 @@ const TeamForm = () => {
     }
 
     return (
+        <div id='event-form'>
         <Form onSubmit={handleFormSubmit}>
             <Form.Field>
                 <Form.Input
@@ -50,13 +76,14 @@ const TeamForm = () => {
                 />
             </Form.Field>
             <Form.Field>
-                <Form.Input
+                <Form.Select
                     value={formInput.sport}
-                    onChange={handleChange}
-                    type='text'
+                    onChange={selectChange}
+                    // type='text'
                     name='sport'
-                    placeholder='Sport'
+                    // placeholder='Sport'
                     label="Sport"
+                    options={options}
                 />
             </Form.Field>
             <Form.Field>
@@ -71,6 +98,7 @@ const TeamForm = () => {
             <Button disabled={!Object.values(formInput).every(value => value)}>Submit</Button>
 
         </Form>
+        </div>
     )
 }
 
